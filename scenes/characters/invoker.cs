@@ -1,22 +1,71 @@
 using Godot;
 using System;
+using System.Security.Cryptography.X509Certificates;
+
 
 public partial class invoker : CharacterBody2D
 {
-	[Signal]
-	public delegate void RightClickToMoveEventHandler(Vector2 position);
+	[Export]
+	private int moveSpeed = 525;
+
+	private bool isMoving = false;
+	private Vector2 moveDestination;
+	private Vector2 moveDirection;
+
+	public override void _Ready()
+	{
+		moveDestination = Position;
+	}
 	public override void _Process(double delta)
 	{
-		RightClickToMove();
+
 	}
 
-	private void RightClickToMove()
+	public override void _PhysicsProcess(double delta)
 	{
-		if (Input.IsActionJustPressed("right_click_to_move"))
+		if (Input.IsActionPressed("right_click_to_move"))
 		{
-			Position = GetGlobalMousePosition();
+			GetMovingDirection();
+			if (moveDestination != Position)
+			{
+				isMoving = true;
+			}
+			else
+			{
+				isMoving = false;
+			}
+		}
+
+		if (isMoving)
+		{
+			Velocity = moveDirection * moveSpeed;
+
+			MoveAndSlide();
+		}
+
+		// check if hits the target position
+		CheckProximity(moveDestination);
+
+		if (Position == moveDestination)
+		{
+			isMoving = false;
+		}
+
+	}
+	private Vector2 GetMovingDirection()
+	{
+		moveDestination = GetGlobalMousePosition();
+		moveDirection = (moveDestination - Position).Normalized();
+		return moveDirection;
+	}
+
+	private void CheckProximity(Vector2 pos)
+	{
+		float distance = Position.DistanceTo(pos);
+
+		if (distance < 10)
+		{
+			Position = pos;
 		}
 	}
-
-	
 }

@@ -4,4 +4,6 @@
 
 [node name="Map" type="Node2D"]
 
+[node name="Ground" type="Node2D" parent="."]
+
 [node name="Invoker" parent="." instance=ExtResource("1_43jcf")]
