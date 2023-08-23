@@ -1,5 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://jx2glhwdy60e"]
+[gd_scene load_steps=4 format=3 uid="uid://jx2glhwdy60e"]
 
+[ext_resource type="Script" path="res://scenes/characters/orbs.cs" id="1_34sp0"]
 [ext_resource type="Texture2D" uid="uid://dujv7gwoxxwm3" path="res://assets/graphics/lights/textures/circle.png" id="1_bsov2"]
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_c7k0t"]
@@ -19,6 +20,7 @@ turbulence_noise_strength = 5.0
 turbulence_noise_scale = 10.0
 
 [node name="Orbs" type="Node2D"]
+script = ExtResource("1_34sp0")
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
 scale = Vector2(1, 1)
@@ -31,4 +33,5 @@ texture = ExtResource("1_bsov2")
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
 scale = Vector2(0.05, 0.05)
+energy = 4.0
 texture = ExtResource("1_bsov2")
