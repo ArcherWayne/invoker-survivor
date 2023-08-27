@@ -8,6 +8,10 @@ public partial class invoker : CharacterBody2D
 	[Export]
 	private int moveSpeed = 525;
 
+
+	// get nodes
+	Sprite2D InvokerImage;
+
 	// movment related parameters
 	private bool isMoving = false;
 	private Vector2 moveDestination;
@@ -21,18 +25,21 @@ public partial class invoker : CharacterBody2D
 	public override void _Ready()
 	{
 		moveDestination = Position;
+
+		InvokerImage = GetNode<Sprite2D>("InvokerImage");
 	}
 	public override void _Process(double delta)
 	{
 		if (Position.X < previousFramePos.X)
 		{
 			isFacingLeft = true;
+			InvokerImage.FlipH = true;
 		}
 		else if (Position.X > previousFramePos.X)
 		{
 			isFacingLeft = false;
+			InvokerImage.FlipH = false;
 		}
-		GD.Print(isFacingLeft);
 
 		// GetPreviousPos must be at end of the _Process()!!!
 		GetPreviousPos();
@@ -68,9 +75,10 @@ public partial class invoker : CharacterBody2D
 		{
 			isMoving = false;
 		}
-
-
 	}
+
+
+	// animaiton and motino related functions
 	private Vector2 GetMovingDirection()
 	{
 		moveDestination = GetGlobalMousePosition();
@@ -94,8 +102,23 @@ public partial class invoker : CharacterBody2D
 		previousFramePos = Position;
 	}
 
-	private void ChangeFacingDirection(Vector2 moveDestination)
+
+	// skill related functions
+	private void GetOrbs()
 	{
-		// FIXME: how to turn?
+		if (Input.IsActionJustPressed("quas"))
+		{
+
+		}
+
+		if (Input.IsActionJustPressed("wex"))
+		{
+
+		}
+
+		if (Input.IsActionJustPressed("exort"))
+		{
+
+		}
 	}
 }

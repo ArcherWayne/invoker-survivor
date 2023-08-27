@@ -23,7 +23,6 @@ turbulence_noise_scale = 10.0
 script = ExtResource("1_34sp0")
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
-scale = Vector2(1, 1)
 process_material = SubResource("ParticleProcessMaterial_c7k0t")
 texture = ExtResource("1_bsov2")
 
