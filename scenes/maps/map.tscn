@@ -1,9 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://cm2rsgg8m1723"]
-
-[ext_resource type="PackedScene" uid="uid://b7t34vpp723q6" path="res://scenes/characters/invoker.tscn" id="1_43jcf"]
-
-[node name="Map" type="Node2D"]
-
-[node name="Ground" type="Node2D" parent="."]
-
-[node name="Invoker" parent="." instance=ExtResource("1_43jcf")]

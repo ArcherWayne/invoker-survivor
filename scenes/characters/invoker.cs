@@ -8,6 +8,12 @@ public partial class invoker : CharacterBody2D
 	[Export]
 	private int moveSpeed = 525;
 
+	[Signal]
+	public delegate void GetQuasEventHandler();
+	[Signal]
+	public delegate void GetWexEventHandler();
+	[Signal]
+	public delegate void GetExortEventHandler();
 
 	// get nodes
 	Sprite2D InvokerImage;
@@ -20,7 +26,13 @@ public partial class invoker : CharacterBody2D
 	private Vector2 previousFramePos;
 
 	// animation related parameters
-	private bool isFacingLeft = false;
+	// private bool isFacingLeft = false;
+
+	// orb related parameters
+	private Node2D OrbsStartPosition;
+	private Marker2D OrbsPos1;
+	private Marker2D OrbsPos2;
+	private Marker2D OrbsPos3;
 
 	public override void _Ready()
 	{
@@ -30,16 +42,7 @@ public partial class invoker : CharacterBody2D
 	}
 	public override void _Process(double delta)
 	{
-		if (Position.X < previousFramePos.X)
-		{
-			isFacingLeft = true;
-			InvokerImage.FlipH = true;
-		}
-		else if (Position.X > previousFramePos.X)
-		{
-			isFacingLeft = false;
-			InvokerImage.FlipH = false;
-		}
+		ChangeFacingDirection();
 
 		// GetPreviousPos must be at end of the _Process()!!!
 		GetPreviousPos();
@@ -53,7 +56,6 @@ public partial class invoker : CharacterBody2D
 			if (moveDestination != Position)
 			{
 				isMoving = true;
-				ChangeFacingDirection(moveDestination);
 			}
 			else
 			{
@@ -102,23 +104,36 @@ public partial class invoker : CharacterBody2D
 		previousFramePos = Position;
 	}
 
+	private void ChangeFacingDirection()
+	{
+		if (Position.X < previousFramePos.X)
+		{
+			// isFacingLeft = true;
+			InvokerImage.FlipH = true;
+		}
+		else if (Position.X > previousFramePos.X)
+		{
+			// isFacingLeft = false;
+			InvokerImage.FlipH = false;
+		}
+	}
 
 	// skill related functions
 	private void GetOrbs()
 	{
-		if (Input.IsActionJustPressed("quas"))
+		if (Input.IsActionJustPressed("Quas"))
 		{
-
+			EmitSignal(SignalName.GetQuas);
 		}
 
-		if (Input.IsActionJustPressed("wex"))
+		if (Input.IsActionJustPressed("Wex"))
 		{
-
+			EmitSignal(SignalName.GetWex);
 		}
 
-		if (Input.IsActionJustPressed("exort"))
+		if (Input.IsActionJustPressed("Exort"))
 		{
-
+			EmitSignal(SignalName.GetExort);
 		}
 	}
 }
