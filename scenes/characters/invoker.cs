@@ -9,14 +9,14 @@ public partial class invoker : CharacterBody2D
 	private int moveSpeed = 525;
 
 	[Signal]
-	public delegate void GetQuasEventHandler();
+	public delegate void GetQuasEventHandler(Vector2 pos);
 	[Signal]
-	public delegate void GetWexEventHandler();
+	public delegate void GetWexEventHandler(Vector2 pos);
 	[Signal]
-	public delegate void GetExortEventHandler();
+	public delegate void GetExortEventHandler(Vector2 pos);
 
 	// get nodes
-	Sprite2D InvokerImage;
+	private Sprite2D InvokerImage;
 
 	// movment related parameters
 	private bool isMoving = false;
@@ -39,10 +39,15 @@ public partial class invoker : CharacterBody2D
 		moveDestination = Position;
 
 		InvokerImage = GetNode<Sprite2D>("InvokerImage");
+		OrbsPos1 = GetNode<Marker2D>("OrbsStartPosition/pos1");
+		OrbsPos2 = GetNode<Marker2D>("OrbsStartPosition/pos2");
+		OrbsPos3 = GetNode<Marker2D>("OrbsStartPosition/pos3");
+
 	}
 	public override void _Process(double delta)
 	{
 		ChangeFacingDirection();
+		GetOrbs();
 
 		// GetPreviousPos must be at end of the _Process()!!!
 		GetPreviousPos();
@@ -123,17 +128,17 @@ public partial class invoker : CharacterBody2D
 	{
 		if (Input.IsActionJustPressed("Quas"))
 		{
-			EmitSignal(SignalName.GetQuas);
+			EmitSignal(SignalName.GetQuas, OrbsPos1.GlobalPosition);
 		}
 
 		if (Input.IsActionJustPressed("Wex"))
 		{
-			EmitSignal(SignalName.GetWex);
+			EmitSignal(SignalName.GetWex, OrbsPos2.GlobalPosition);
 		}
 
 		if (Input.IsActionJustPressed("Exort"))
 		{
-			EmitSignal(SignalName.GetExort);
+			EmitSignal(SignalName.GetExort, OrbsPos3.GlobalPosition);
 		}
 	}
 }

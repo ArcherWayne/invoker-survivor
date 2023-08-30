@@ -1,9 +1,17 @@
-[gd_scene load_steps=2 format=3 uid="uid://cm2rsgg8m1723"]
+[gd_scene load_steps=3 format=3 uid="uid://cm2rsgg8m1723"]
 
 [ext_resource type="PackedScene" uid="uid://b7t34vpp723q6" path="res://scenes/characters/invoker.tscn" id="1_7oaws"]
+[ext_resource type="Script" path="res://scenes/level/level.cs" id="1_dix6d"]
 
 [node name="Level" type="Node2D"]
+script = ExtResource("1_dix6d")
 
 [node name="Ground" type="Node2D" parent="."]
 
 [node name="Invoker" parent="." instance=ExtResource("1_7oaws")]
+
+[node name="HadOrbs" type="Node2D" parent="."]
+
+[connection signal="GetExort" from="Invoker" to="." method="OnInvokerGetExort"]
+[connection signal="GetQuas" from="Invoker" to="." method="OnInvokerGetQuas"]
+[connection signal="GetWex" from="Invoker" to="." method="OnInvokerGetWex"]
