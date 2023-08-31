@@ -16,7 +16,7 @@ texture = ExtResource("1_hqtl3")
 [node name="InvokerCollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_yfl03")
 
-[node name="OrbsStartPosition" type="Node" parent="."]
+[node name="OrbsStartPosition" type="Node2D" parent="."]
 
 [node name="pos1" type="Marker2D" parent="OrbsStartPosition"]
 position = Vector2(-40, -24)
@@ -26,3 +26,5 @@ position = Vector2(1, 45)
 
 [node name="pos3" type="Marker2D" parent="OrbsStartPosition"]
 position = Vector2(40, -25)
+
+[node name="HadOrbs" type="Node2D" parent="."]

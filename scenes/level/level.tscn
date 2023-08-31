@@ -9,9 +9,3 @@ script = ExtResource("1_dix6d")
 [node name="Ground" type="Node2D" parent="."]
 
 [node name="Invoker" parent="." instance=ExtResource("1_7oaws")]
-
-[node name="HadOrbs" type="Node2D" parent="."]
-
-[connection signal="GetExort" from="Invoker" to="." method="OnInvokerGetExort"]
-[connection signal="GetQuas" from="Invoker" to="." method="OnInvokerGetQuas"]
-[connection signal="GetWex" from="Invoker" to="." method="OnInvokerGetWex"]

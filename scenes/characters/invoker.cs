@@ -5,15 +5,12 @@ using System.Security.Cryptography.X509Certificates;
 
 public partial class invoker : CharacterBody2D
 {
+	// [Signal]
+	// public delegate void SetTypeEventHandler();
+
 	[Export]
 	private int moveSpeed = 525;
 
-	[Signal]
-	public delegate void GetQuasEventHandler(Vector2 pos);
-	[Signal]
-	public delegate void GetWexEventHandler(Vector2 pos);
-	[Signal]
-	public delegate void GetExortEventHandler(Vector2 pos);
 
 	// get nodes
 	private Sprite2D InvokerImage;
@@ -29,7 +26,9 @@ public partial class invoker : CharacterBody2D
 	// private bool isFacingLeft = false;
 
 	// orb related parameters
-	private Node2D OrbsStartPosition;
+	private PackedScene OrbsScene;
+	// private Node2D OrbsStartPosition;
+	private Node2D HadOrbs;
 	private Marker2D OrbsPos1;
 	private Marker2D OrbsPos2;
 	private Marker2D OrbsPos3;
@@ -43,11 +42,23 @@ public partial class invoker : CharacterBody2D
 		OrbsPos2 = GetNode<Marker2D>("OrbsStartPosition/pos2");
 		OrbsPos3 = GetNode<Marker2D>("OrbsStartPosition/pos3");
 
+		HadOrbs = (Node2D)GetNode("HadOrbs");
+
+		// OrbsStartPosition = (Node2D)GetNode("OrbsStartPosition");
+
+		OrbsScene = (PackedScene)ResourceLoader.Load("res://scenes/characters/orbs.tscn");
+
+
 	}
 	public override void _Process(double delta)
 	{
 		ChangeFacingDirection();
 		GetOrbs();
+
+		/*** debug section
+
+
+		***/
 
 		// GetPreviousPos must be at end of the _Process()!!!
 		GetPreviousPos();
@@ -128,17 +139,26 @@ public partial class invoker : CharacterBody2D
 	{
 		if (Input.IsActionJustPressed("Quas"))
 		{
-			EmitSignal(SignalName.GetQuas, OrbsPos1.GlobalPosition);
+			GD.Print("q");
+			Node2D Orbs = (Node2D)OrbsScene.Instantiate();
+			Orbs.Position = OrbsPos1.Position;
+			HadOrbs.AddChild(Orbs);
 		}
 
 		if (Input.IsActionJustPressed("Wex"))
 		{
-			EmitSignal(SignalName.GetWex, OrbsPos2.GlobalPosition);
+			GD.Print("w");
+			Node2D Orbs = (Node2D)OrbsScene.Instantiate();
+			Orbs.Position = OrbsPos2.Position;
+			HadOrbs.AddChild(Orbs);
 		}
 
 		if (Input.IsActionJustPressed("Exort"))
 		{
-			EmitSignal(SignalName.GetExort, OrbsPos3.GlobalPosition);
+			GD.Print("e");
+			Node2D Orbs = (Node2D)OrbsScene.Instantiate();
+			Orbs.Position = OrbsPos3.Position;
+			HadOrbs.AddChild(Orbs);
 		}
 	}
 }
