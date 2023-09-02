@@ -33,6 +33,8 @@ public partial class invoker : CharacterBody2D
 	private Marker2D OrbsPos2;
 	private Marker2D OrbsPos3;
 
+	private string[] OrbSlots = new string[3];
+
 	public override void _Ready()
 	{
 		moveDestination = Position;

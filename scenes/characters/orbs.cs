@@ -16,15 +16,19 @@ public partial class orbs : Node2D
 	{
 		OrbsImage = (Node2D)GetNode("OrbsImage");
 
-		orbsTypeArray[0] = "quas";
-		orbsTypeArray[1] = "wex";
-		orbsTypeArray[2] = "exort";
+		orbsTypeArray[0] = "Quas";
+		orbsTypeArray[1] = "Wex";
+		orbsTypeArray[2] = "Exort";
+
+		Random rand = new Random();
+		int randomIndex = rand.Next(0, orbsTypeArray.Length);
+
+		type = orbsTypeArray[randomIndex];
 	}
 
 	public override void _Process(double delta)
 	{
 		SetOrbColor();
-
 	}
 
 	public void SetOrbType(string orbType)
@@ -42,20 +46,19 @@ public partial class orbs : Node2D
 	public void SetOrbColor()
 	{
 		switch(type){
-			case "quas" :
+			case "Quas" :
 				OrbsImage.Modulate = new Color(0, 0, 1);
 				break;
-			case "wex" :
+			case "Wex" :
 				OrbsImage.Modulate = new Color(0, 1, 0);
 				break;
-			case "exort" :
+			case "Exort" :
 				OrbsImage.Modulate = new Color(1, 0, 0);
 				break;
 
 			default :
 				OrbsImage.Modulate = new Color(0, 0, 0);
 				break;
-
 		}
 	}
 

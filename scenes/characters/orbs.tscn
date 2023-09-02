@@ -27,7 +27,6 @@ process_material = SubResource("ParticleProcessMaterial_c7k0t")
 texture = ExtResource("1_bsov2")
 
 [node name="OrbsImage" type="Sprite2D" parent="."]
-modulate = Color(0, 1, 1, 1)
 scale = Vector2(0.05, 0.05)
 texture = ExtResource("1_bsov2")
 
