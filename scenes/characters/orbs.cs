@@ -22,12 +22,21 @@ public partial class orbs : Node2D
 
 	public string[] orbsTypeArray = new string[3];
 
+	private Color QuasColor = new Color(0.314f, 0.592f, 0.765f);
+	private Color WexColor = new Color(1f, 0.686f, 1f);
+	private Color ExortColor = new Color(0.992f, 0.588f, 0.22f);
+	private Color WhiteColor = new Color(0, 0, 0);
+
 	private Node2D OrbsImage;
+	private GpuParticles2D OrbsParticle;
+	private GpuParticles2D ChangedParticle;
 
 	
 	public override void _Ready()
 	{
 		OrbsImage = (Node2D)GetNode("OrbsImage");
+		OrbsParticle = (GpuParticles2D)GetNode("OrbsParticle");
+		ChangedParticle = (GpuParticles2D)GetNode("ChangedParticle");
 
 		orbsTypeArray[0] = "Quas";
 		orbsTypeArray[1] = "Wex";
@@ -49,17 +58,17 @@ public partial class orbs : Node2D
 	{
 		switch(type){
 			case "Quas" :
-				OrbsImage.Modulate = new Color(0.314f, 0.592f, 0.765f);
+				SetModulate(QuasColor);
 				break;
 			case "Wex" :
-				OrbsImage.Modulate = new Color(1f, 0.686f, 1f);
+				SetModulate(WexColor);
 				break;
 			case "Exort" :
-				OrbsImage.Modulate = new Color(0.992f, 0.588f, 0.22f);
+				SetModulate(ExortColor);
 				break;
 
 			default :
-				OrbsImage.Modulate = new Color(0, 0, 0);
+				SetModulate(WhiteColor);
 				break;
 		}
 	}
@@ -67,6 +76,18 @@ public partial class orbs : Node2D
 	public void _on_invoker_orb_1_set_type(string AssignedType)
 	{
 		type = AssignedType;
+
+		// FIXME: 修改为信号触发 how? 
+		
+		ChangedParticle.Emitting = true;
+	}
+	
+	private void SetModulate(Color color)
+	{
+		OrbsImage.Modulate = color;
+		OrbsParticle.Modulate = color;
+		ChangedParticle.Modulate = color;
+
 	}
 
 

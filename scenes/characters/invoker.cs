@@ -76,7 +76,7 @@ public partial class invoker : CharacterBody2D
 	{
 		ChangeFacingDirection();
 		GetOrbs();
-		SetOrbsType();
+		// SetOrbsType();
 
 		AdjustMarkPosition(delta);
 		AdjustOrbsPosition();
@@ -170,6 +170,7 @@ public partial class invoker : CharacterBody2D
 				OrbsSlots[i] = OrbsSlots[i + 1];
 			}
 			OrbsSlots[2] = "Quas";
+			SetOrbsType();
 		}
 
 		if (Input.IsActionJustPressed("Wex"))
@@ -180,6 +181,7 @@ public partial class invoker : CharacterBody2D
 				OrbsSlots[i] = OrbsSlots[i + 1];
 			}
 			OrbsSlots[2] = "Wex";
+			SetOrbsType();
 		}
 
 		if (Input.IsActionJustPressed("Exort"))
@@ -190,12 +192,13 @@ public partial class invoker : CharacterBody2D
 				OrbsSlots[i] = OrbsSlots[i + 1];
 			}
 			OrbsSlots[2] = "Exort";
+			SetOrbsType();
 		}
-		GD.Print(OrbsSlots);
 	}
 
 	private void SetOrbsType()
 	{
+		
 		EmitSignal(SignalName.Orb1SetType, OrbsSlots[0]);
 		EmitSignal(SignalName.Orb2SetType, OrbsSlots[1]);
 		EmitSignal(SignalName.Orb3SetType, OrbsSlots[2]);
