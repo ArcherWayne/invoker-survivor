@@ -7,19 +7,9 @@ public partial class orbs : Node2D
 
 	[Export]
 	public string type { get; set; }
-	// {
-	// 	get
-	// 	{
-	// 		return type;
-	// 	}
-	// 	set
-	// 	{
-	// 		type = value;
-	// 	}
-	// }
-	// public string AccessType
 
 
+	// Orbs related 
 	public string[] orbsTypeArray = new string[3];
 
 	private Color QuasColor = new Color(0.314f, 0.592f, 0.765f);
@@ -34,9 +24,10 @@ public partial class orbs : Node2D
 	
 	public override void _Ready()
 	{
-		OrbsImage = (Node2D)GetNode("OrbsImage");
-		OrbsParticle = (GpuParticles2D)GetNode("OrbsParticle");
-		ChangedParticle = (GpuParticles2D)GetNode("ChangedParticle");
+		var OrbsScene = (PackedScene)ResourceLoader.Load("res://scenes/characters/orbs.tscn");
+		// OrbsImage = (Node2D)GetNode("OrbsImage");
+		// OrbsParticle = (GpuParticles2D)GetNode("OrbsParticle");
+		// ChangedParticle = (GpuParticles2D)GetNode("ChangedParticle");
 
 		orbsTypeArray[0] = "Quas";
 		orbsTypeArray[1] = "Wex";
@@ -73,13 +64,9 @@ public partial class orbs : Node2D
 		}
 	}
 
-	public void _on_invoker_orb_1_set_type(string AssignedType)
+	public void _on_invoker_orb_set_type(string AssignedType)
 	{
 		type = AssignedType;
-
-		// FIXME: 修改为信号触发 how? 
-		
-		ChangedParticle.Emitting = true;
 	}
 	
 	private void SetModulate(Color color)
@@ -87,8 +74,5 @@ public partial class orbs : Node2D
 		OrbsImage.Modulate = color;
 		OrbsParticle.Modulate = color;
 		ChangedParticle.Modulate = color;
-
 	}
-
-
 }

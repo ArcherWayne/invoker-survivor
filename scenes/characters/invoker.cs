@@ -6,15 +6,11 @@ using System.Security.Cryptography.X509Certificates;
 
 public partial class invoker : CharacterBody2D
 {
-	// [Signal]
-	// public delegate void SetTypeEventHandler();
-
 	[Export]
 	private int moveSpeed = 525;
 
-
-	// get nodes
-	private Sprite2D InvokerImage;
+	[Signal]
+	public delegate void SetTypeEventHandler(string type);
 
 	// movment related parameters
 	private bool isMoving = false;
@@ -24,32 +20,23 @@ public partial class invoker : CharacterBody2D
 	private Vector2 previousFramePos;
 
 	// animation related parameters
-	// private bool isFacingLeft = false;
+	private Sprite2D InvokerImage;
 
 	// orb related parameters
-	// private PackedScene OrbsScene;
-	// private Node2D OrbsStartPosition;
-	private Node2D HadOrbs;
+	private PackedScene OrbsScene;
 	private Marker2D OrbsPos1;
 	private Marker2D OrbsPos2;
 	private Marker2D OrbsPos3;
 
-	private Node2D Orbs1;
-	private Node2D Orbs2;
-	private Node2D Orbs3;
+	private Node2D HadOrbs;
+	public Node2D Orbs1;
+	public Node2D Orbs2;
+	public Node2D Orbs3;
 
-	[Export]
 	public float OrbsDistanceWithPlayer = 40.0f;
-	[Export]
 	public float OrbsRotationAngularSpeed = 1.0f;
 	private float OrbsCurrentAngle = 0.0f;
 
-	[Signal]
-	public delegate void Orb1SetTypeEventHandler(string type);
-	[Signal]
-	public delegate void Orb2SetTypeEventHandler(string type);
-	[Signal]
-	public delegate void Orb3SetTypeEventHandler(string type);
 
 	private int OrbsSlotsMaxLenght = 3;
 	private string [] OrbsSlots = new string[3] {"Quas", "Wex", "Exort"};
@@ -64,24 +51,18 @@ public partial class invoker : CharacterBody2D
 		OrbsPos3 = GetNode<Marker2D>("OrbsStartPosition/pos3");
 
 		HadOrbs = (Node2D)GetNode("HadOrbs");
-
 		Orbs1 = (Node2D)GetNode("HadOrbs/Orbs1");
 		Orbs2 = (Node2D)GetNode("HadOrbs/Orbs2");
 		Orbs3 = (Node2D)GetNode("HadOrbs/Orbs3");
-
-		// OrbsDistanceWithPlayer = 40;
-		// OrbsRotationAngularSpeed = 30;
 	}
 	public override void _Process(double delta)
 	{
 		ChangeFacingDirection();
 		GetOrbs();
-		// SetOrbsType();
 
 		AdjustMarkPosition(delta);
 		AdjustOrbsPosition();
 		/*** debug section
-
 
 		***/
 
@@ -199,9 +180,7 @@ public partial class invoker : CharacterBody2D
 	private void SetOrbsType()
 	{
 		
-		EmitSignal(SignalName.Orb1SetType, OrbsSlots[0]);
-		EmitSignal(SignalName.Orb2SetType, OrbsSlots[1]);
-		EmitSignal(SignalName.Orb3SetType, OrbsSlots[2]);
+		EmitSignal(SignalName.SetType, OrbsSlots[0]);
 	}
 
 	private void AdjustMarkPosition(double delta)
