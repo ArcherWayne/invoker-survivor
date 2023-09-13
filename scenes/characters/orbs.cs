@@ -64,15 +64,34 @@ public partial class orbs : Node2D
 		}
 	}
 
-	public void _on_invoker_orb_set_type(string AssignedType)
-	{
-		type = AssignedType;
-	}
-	
+
 	private void SetModulate(Color color)
 	{
 		OrbsImage.Modulate = color;
 		OrbsParticle.Modulate = color;
 		ChangedParticle.Modulate = color;
+
 	}
+
+	public void _on_invoker_orb_1_set_type(string AssignedType)
+	{
+		type = AssignedType;
+		ChangedParticle.Emitting = true;
+
+	}
+
+	public void _on_invoker_orb_2_set_type(string AssignedType)
+	{
+
+		type = AssignedType;
+		ChangedParticle.Emitting = true;
+	}
+
+	public void _on_invoker_orb_3_set_type(string AssignedType)
+	{
+		type = AssignedType;
+		ChangedParticle.Emitting = true;
+	}
+	
+
 }

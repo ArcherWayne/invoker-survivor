@@ -17,3 +17,12 @@ metadata/_edit_lock_ = true
 [node name="Invoker" parent="." instance=ExtResource("1_7oaws")]
 
 [node name="Camera2D" type="Camera2D" parent="Invoker"]
+
+[node name="autoAttackInterval" type="Timer" parent="Invoker"]
+wait_time = 0.5
+autostart = true
+
+[node name="projectiles" type="Node2D" parent="."]
+
+[connection signal="LeftClick" from="Invoker" to="." method="_on_invoker_left_click"]
+[connection signal="timeout" from="Invoker/autoAttackInterval" to="." method="_on_auto_attack_interval_timeout"]

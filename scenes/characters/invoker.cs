@@ -7,7 +7,7 @@ using System.Security.Cryptography.X509Certificates;
 public partial class invoker : CharacterBody2D
 {
 	[Export]
-	private int moveSpeed = 525;
+	private int moveSpeed = 325;
 
 	[Signal]
 	public delegate void SetTypeEventHandler(string type);
@@ -19,11 +19,9 @@ public partial class invoker : CharacterBody2D
 
 	private Vector2 previousFramePos;
 
-	// animation related parameters
-	private Sprite2D InvokerImage;
 
-	// orb related parameters
-	private PackedScene OrbsScene;
+	private Node2D HadOrbs;
+
 	private Marker2D OrbsPos1;
 	private Marker2D OrbsPos2;
 	private Marker2D OrbsPos3;
@@ -38,8 +36,20 @@ public partial class invoker : CharacterBody2D
 	private float OrbsCurrentAngle = 0.0f;
 
 
+	[Signal]
+	public delegate void Orb1SetTypeEventHandler(string type);
+	[Signal]
+	public delegate void Orb2SetTypeEventHandler(string type);
+	[Signal]
+	public delegate void Orb3SetTypeEventHandler(string type);
+	[Signal]
+	public delegate void LeftClickEventHandler(Vector2 direction, Vector2 position);
+
+
 	private int OrbsSlotsMaxLenght = 3;
 	private string [] OrbsSlots = new string[3] {"Quas", "Wex", "Exort"};
+
+	private Marker2D AttackStartMarker;
 
 	public override void _Ready()
 	{
@@ -54,6 +64,9 @@ public partial class invoker : CharacterBody2D
 		Orbs1 = (Node2D)GetNode("HadOrbs/Orbs1");
 		Orbs2 = (Node2D)GetNode("HadOrbs/Orbs2");
 		Orbs3 = (Node2D)GetNode("HadOrbs/Orbs3");
+
+		AttackStartMarker = (Marker2D)GetNode("AutoAttackStartPosition/AttackStartMarker");
+
 	}
 	public override void _Process(double delta)
 	{
@@ -62,6 +75,14 @@ public partial class invoker : CharacterBody2D
 
 		AdjustMarkPosition(delta);
 		AdjustOrbsPosition();
+
+		if (Input.IsActionPressed("left_click"))
+		{
+			Vector2 direction = (GetGlobalMousePosition() - Position).Normalized();
+			EmitSignal(SignalName.LeftClick, direction, AttackStartMarker.GlobalPosition);
+		}
+
+
 		/*** debug section
 
 		***/
@@ -130,7 +151,7 @@ public partial class invoker : CharacterBody2D
 	{
 		if (Position.X < previousFramePos.X)
 		{
-			// isFacingLeft = true;
+			// isFacingLeft = true; 
 			InvokerImage.FlipH = true;
 		}
 		else if (Position.X > previousFramePos.X)
