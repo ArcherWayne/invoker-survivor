@@ -76,9 +76,18 @@ public partial class orbs : Node2D
 	public void _on_invoker_orb_1_set_type(string AssignedType)
 	{
 		type = AssignedType;
+		ChangedParticle.Emitting = true;
+	}
 
-		// FIXME: 修改为信号触发 how? 
-		
+	public void _on_invoker_orb_2_set_type(string AssignedType)
+	{
+		type = AssignedType;
+		ChangedParticle.Emitting = true;
+	}
+
+	public void _on_invoker_orb_3_set_type(string AssignedType)
+	{
+		type = AssignedType;
 		ChangedParticle.Emitting = true;
 	}
 	

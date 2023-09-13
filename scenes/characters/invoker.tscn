@@ -37,5 +37,5 @@ position = Vector2(40, -25)
 [node name="Orbs3" parent="HadOrbs" instance=ExtResource("3_6jlm7")]
 
 [connection signal="Orb1SetType" from="." to="HadOrbs/Orbs1" method="_on_invoker_orb_1_set_type"]
-[connection signal="Orb2SetType" from="." to="HadOrbs/Orbs2" method="_on_invoker_orb_1_set_type"]
-[connection signal="Orb3SetType" from="." to="HadOrbs/Orbs3" method="_on_invoker_orb_1_set_type"]
+[connection signal="Orb2SetType" from="." to="HadOrbs/Orbs2" method="_on_invoker_orb_2_set_type"]
+[connection signal="Orb3SetType" from="." to="HadOrbs/Orbs3" method="_on_invoker_orb_3_set_type"]

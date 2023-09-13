@@ -6,9 +6,6 @@ using System.Security.Cryptography.X509Certificates;
 
 public partial class invoker : CharacterBody2D
 {
-	// [Signal]
-	// public delegate void SetTypeEventHandler();
-
 	[Export]
 	private int moveSpeed = 525;
 
@@ -38,9 +35,7 @@ public partial class invoker : CharacterBody2D
 	private Node2D Orbs2;
 	private Node2D Orbs3;
 
-	[Export]
 	public float OrbsDistanceWithPlayer = 40.0f;
-	[Export]
 	public float OrbsRotationAngularSpeed = 1.0f;
 	private float OrbsCurrentAngle = 0.0f;
 
@@ -68,9 +63,6 @@ public partial class invoker : CharacterBody2D
 		Orbs1 = (Node2D)GetNode("HadOrbs/Orbs1");
 		Orbs2 = (Node2D)GetNode("HadOrbs/Orbs2");
 		Orbs3 = (Node2D)GetNode("HadOrbs/Orbs3");
-
-		// OrbsDistanceWithPlayer = 40;
-		// OrbsRotationAngularSpeed = 30;
 	}
 	public override void _Process(double delta)
 	{
@@ -87,6 +79,8 @@ public partial class invoker : CharacterBody2D
 
 		// GetPreviousPos must be at end of the _Process()!!!
 		GetPreviousPos();
+
+		GD.Print(OrbsSlots);
 	}
 
 	public override void _PhysicsProcess(double delta)
