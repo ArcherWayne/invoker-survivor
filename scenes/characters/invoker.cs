@@ -7,7 +7,7 @@ using System.Security.Cryptography.X509Certificates;
 public partial class invoker : CharacterBody2D
 {
 	[Export]
-	private int moveSpeed = 525;
+	private int moveSpeed = 325;
 
 
 	// get nodes
@@ -20,12 +20,6 @@ public partial class invoker : CharacterBody2D
 
 	private Vector2 previousFramePos;
 
-	// animation related parameters
-	// private bool isFacingLeft = false;
-
-	// orb related parameters
-	// private PackedScene OrbsScene;
-	// private Node2D OrbsStartPosition;
 	private Node2D HadOrbs;
 	private Marker2D OrbsPos1;
 	private Marker2D OrbsPos2;
@@ -45,9 +39,13 @@ public partial class invoker : CharacterBody2D
 	public delegate void Orb2SetTypeEventHandler(string type);
 	[Signal]
 	public delegate void Orb3SetTypeEventHandler(string type);
+	[Signal]
+	public delegate void LeftClickEventHandler(Vector2 direction, Vector2 position);
 
 	private int OrbsSlotsMaxLenght = 3;
 	private string [] OrbsSlots = new string[3] {"Quas", "Wex", "Exort"};
+
+	private Marker2D AttackStartMarker;
 
 	public override void _Ready()
 	{
@@ -63,6 +61,8 @@ public partial class invoker : CharacterBody2D
 		Orbs1 = (Node2D)GetNode("HadOrbs/Orbs1");
 		Orbs2 = (Node2D)GetNode("HadOrbs/Orbs2");
 		Orbs3 = (Node2D)GetNode("HadOrbs/Orbs3");
+
+		AttackStartMarker = (Marker2D)GetNode("AutoAttackStartPosition/AttackStartMarker");
 	}
 	public override void _Process(double delta)
 	{
@@ -72,6 +72,14 @@ public partial class invoker : CharacterBody2D
 
 		AdjustMarkPosition(delta);
 		AdjustOrbsPosition();
+
+		if (Input.IsActionPressed("left_click"))
+		{
+			Vector2 direction = (GetGlobalMousePosition() - Position).Normalized();
+			EmitSignal(SignalName.LeftClick, direction, AttackStartMarker.GlobalPosition);
+		}
+
+
 		/*** debug section
 
 
@@ -79,8 +87,6 @@ public partial class invoker : CharacterBody2D
 
 		// GetPreviousPos must be at end of the _Process()!!!
 		GetPreviousPos();
-
-		GD.Print(OrbsSlots);
 	}
 
 	public override void _PhysicsProcess(double delta)

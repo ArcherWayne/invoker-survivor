@@ -7,17 +7,6 @@ public partial class orbs : Node2D
 
 	[Export]
 	public string type { get; set; }
-	// {
-	// 	get
-	// 	{
-	// 		return type;
-	// 	}
-	// 	set
-	// 	{
-	// 		type = value;
-	// 	}
-	// }
-	// public string AccessType
 
 
 	public string[] orbsTypeArray = new string[3];
@@ -73,6 +62,14 @@ public partial class orbs : Node2D
 		}
 	}
 
+	private void SetModulate(Color color)
+	{
+		OrbsImage.Modulate = color;
+		OrbsParticle.Modulate = color;
+		ChangedParticle.Modulate = color;
+
+	}
+
 	public void _on_invoker_orb_1_set_type(string AssignedType)
 	{
 		type = AssignedType;
@@ -91,13 +88,6 @@ public partial class orbs : Node2D
 		ChangedParticle.Emitting = true;
 	}
 	
-	private void SetModulate(Color color)
-	{
-		OrbsImage.Modulate = color;
-		OrbsParticle.Modulate = color;
-		ChangedParticle.Modulate = color;
-
-	}
 
 
 }
