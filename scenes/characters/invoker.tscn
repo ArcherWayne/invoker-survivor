@@ -1,14 +1,18 @@
-[gd_scene load_steps=5 format=3 uid="uid://b7t34vpp723q6"]
+[gd_scene load_steps=6 format=3 uid="uid://b7t34vpp723q6"]
 
 [ext_resource type="Script" path="res://scenes/characters/invoker.cs" id="1_daluk"]
 [ext_resource type="Texture2D" uid="uid://dk10da1bvmsm4" path="res://assets/graphics/windranger/windranger_idle_animation1.png" id="1_hqtl3"]
-[ext_resource type="PackedScene" uid="uid://jx2glhwdy60e" path="res://scenes/characters/orbs.tscn" id="3_kpd7a"]
+
+[ext_resource type="PackedScene" uid="uid://jx2glhwdy60e" path="res://scenes/characters/orbs.tscn" id="3_6jlm7"]
+[ext_resource type="Script" path="res://scenes/characters/AutoAttackStartPosition.cs" id="4_138pg"]
+
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_yfl03"]
 radius = 9.0
 height = 40.0
 
 [node name="Invoker" type="CharacterBody2D"]
+collision_mask = 0
 script = ExtResource("1_daluk")
 
 [node name="InvokerImage" type="Sprite2D" parent="."]
@@ -38,6 +42,7 @@ position = Vector2(40, -25)
 [node name="Orbs3" parent="HadOrbs" instance=ExtResource("3_6jlm7")]
 
 [node name="AutoAttackStartPosition" type="Node2D" parent="."]
+script = ExtResource("4_138pg")
 
 [node name="AttackStartMarker" type="Marker2D" parent="AutoAttackStartPosition"]
 position = Vector2(35, 0)
