@@ -27,4 +27,5 @@ public partial class autoAttack : RigidBody2D
 	{
 		QueueFree();
 	}
+
 }
