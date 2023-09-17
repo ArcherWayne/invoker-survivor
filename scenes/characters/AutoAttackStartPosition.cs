@@ -19,13 +19,12 @@ public partial class AutoAttackStartPosition : Node2D
 	public void UpdateStartMarkerPosition()
 	{
 		Vector2 UpdatePosition = new Vector2();
-		Vector2 facingDirection = (GetGlobalMousePosition() - Position).Normalized();
+		Vector2 facingDirection = (GetGlobalMousePosition() - GlobalPosition).Normalized();
 		var angle = facingDirection.Angle();
 
 		UpdatePosition.X = distanceWithInvoker * Mathf.Cos(angle);
 		UpdatePosition.Y = distanceWithInvoker * Mathf.Sin(angle);
 
 		AttackStartMarker.Position = UpdatePosition;
-		// GD.Print(Position);
 	}
 }
