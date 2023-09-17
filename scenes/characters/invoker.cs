@@ -44,10 +44,13 @@ public partial class invoker : CharacterBody2D
 	public delegate void Orb3SetTypeEventHandler(string type);
 	[Signal]
 	public delegate void LeftClickEventHandler(Vector2 direction, Vector2 position);
+	[Signal]
+	public delegate void GetOrbsSlotsEventHandler(string[] OS);
 
 
 	private int OrbsSlotsMaxLenght = 3;
-	private string [] OrbsSlots = new string[3] {"Quas", "Wex", "Exort"};
+	[Export]
+	public string[] OrbsSlots = new string[3] {"Quas", "Wex", "Exort"};
 
 	private Marker2D AttackStartMarker;
 
@@ -72,7 +75,6 @@ public partial class invoker : CharacterBody2D
 	{
 		ChangeFacingDirection();
 		GetOrbs();
-
 		AdjustMarkPosition(delta);
 		AdjustOrbsPosition();
 
@@ -200,8 +202,11 @@ public partial class invoker : CharacterBody2D
 
 	private void SetOrbsType()
 	{
-		
-		EmitSignal(SignalName.SetType, OrbsSlots[0]);
+		EmitSignal(SignalName.Orb1SetType, OrbsSlots[0]);
+		EmitSignal(SignalName.Orb2SetType, OrbsSlots[1]);
+		EmitSignal(SignalName.Orb3SetType, OrbsSlots[2]);
+		EmitSignal(SignalName.GetOrbsSlots, OrbsSlots);
+
 	}
 
 	private void AdjustMarkPosition(double delta)
@@ -229,5 +234,4 @@ public partial class invoker : CharacterBody2D
 		Orbs2.Position = OrbsPos2.Position;
 		Orbs3.Position = OrbsPos3.Position;
 	}
-
 }
