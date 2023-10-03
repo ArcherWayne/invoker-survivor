@@ -1,13 +1,18 @@
 using Godot;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 public partial class InvokedSkill : Node2D
 {
 	CharacterBody2D Inovker;
-	Node2D SKillSlots1;
-	Node2D SKillSlots2;
+	Node2D SkillSlot1;
+	Node2D SkillSlot2;
+	Label SkillNames;
+	string Skill1String = "Empty";
+	string Skill2String = "Empty";
+	string SkillReplacementString = "Empty";
 
 	public string[] OrbsSlots;
 	public string[] InvokedSkillSlots;
@@ -16,8 +21,10 @@ public partial class InvokedSkill : Node2D
 	public override void _Ready()
 	{
 		Inovker = (CharacterBody2D)GetNode("..");
-		SKillSlots1 = (Node2D)GetNode("SkillSlot1");
-		SKillSlots2 = (Node2D)GetNode("SkillSlot2");
+		SkillSlot1 = (Node2D)GetNode("SkillSlot1");
+		SkillSlot2 = (Node2D)GetNode("SkillSlot2");
+		SkillNames = (Label)GetNode("SkillNames(debug)");
+
 
 		// OrbsSlots = {"Quas", "Wex", "Exort"};
 		OrbsSlots[0] = "Quas";
@@ -48,9 +55,19 @@ public partial class InvokedSkill : Node2D
 				stringBuilder.Append(str);
 			}
 			string builtOrbsSlots = stringBuilder.ToString();
-			// string builtOrbsSlots = string.Join("", OrbsSlots);
 			int InovkedNumber = CountSpells(builtOrbsSlots);
-			GD.Print(InovkedNumber);
+			// FIXME: add condition to check if the invoked skill is already in the skill slots
+			// if (InvokeDict.ContainsKey(InovkedNumber))
+			// {
+				Skill2String = Skill1String;
+				Skill1String = InvokeDict[InovkedNumber];
+			// }
+			// else
+			// {
+			// 	GD.Print("No corresponding invoked number found in dict!");
+			// }
+
+			SkillNames.Text = InovkedNumber + Skill1String + Skill2String;
 		}
 	}
 	public void _on_invoker_get_orbs_slots(string[] OS)

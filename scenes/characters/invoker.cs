@@ -9,7 +9,6 @@ public partial class invoker : CharacterBody2D
 	[Export]
 	private int moveSpeed = 325;
 
-
 	// get nodes
 	private Sprite2D InvokerImage;
 
