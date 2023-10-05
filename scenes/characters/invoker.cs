@@ -9,8 +9,9 @@ public partial class invoker : CharacterBody2D
 	[Export]
 	private int moveSpeed = 325;
 
-	[Signal]
-	public delegate void SetTypeEventHandler(string type);
+	// get nodes
+	private Sprite2D InvokerImage;
+
 
 	// movment related parameters
 	private bool isMoving = false;

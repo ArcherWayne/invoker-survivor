@@ -50,6 +50,12 @@ script = ExtResource("4_jlav8")
 
 [node name="SkillSlot2" type="Node2D" parent="InvokedSkill"]
 
+[node name="SkillNames(debug)" type="Label" parent="InvokedSkill"]
+offset_left = -20.0
+offset_top = 33.0
+offset_right = 20.0
+offset_bottom = 56.0
+
 [node name="AutoAttackStartPosition" type="Node2D" parent="."]
 script = ExtResource("4_138pg")
 
