@@ -12,7 +12,6 @@ public partial class invoker : CharacterBody2D
 	// get nodes
 	private Sprite2D InvokerImage;
 
-
 	// movment related parameters
 	private bool isMoving = false;
 	private Vector2 moveDestination;
@@ -20,22 +19,18 @@ public partial class invoker : CharacterBody2D
 
 	private Vector2 previousFramePos;
 
-
 	private Node2D HadOrbs;
-
 	private Marker2D OrbsPos1;
 	private Marker2D OrbsPos2;
 	private Marker2D OrbsPos3;
 
-	private Node2D HadOrbs;
-	public Node2D Orbs1;
-	public Node2D Orbs2;
-	public Node2D Orbs3;
+	private Node2D Orbs1;
+	private Node2D Orbs2;
+	private Node2D Orbs3;
 
 	public float OrbsDistanceWithPlayer = 40.0f;
 	public float OrbsRotationAngularSpeed = 1.0f;
 	private float OrbsCurrentAngle = 0.0f;
-
 
 	[Signal]
 	public delegate void Orb1SetTypeEventHandler(string type);
@@ -47,7 +42,6 @@ public partial class invoker : CharacterBody2D
 	public delegate void LeftClickEventHandler(Vector2 direction, Vector2 position);
 	[Signal]
 	public delegate void GetOrbsSlotsEventHandler(string[] OS);
-
 
 	private int OrbsSlotsMaxLenght = 3;
 	[Export]
@@ -65,12 +59,12 @@ public partial class invoker : CharacterBody2D
 		OrbsPos3 = GetNode<Marker2D>("OrbsStartPosition/pos3");
 
 		HadOrbs = (Node2D)GetNode("HadOrbs");
+
 		Orbs1 = (Node2D)GetNode("HadOrbs/Orbs1");
 		Orbs2 = (Node2D)GetNode("HadOrbs/Orbs2");
 		Orbs3 = (Node2D)GetNode("HadOrbs/Orbs3");
 
 		AttackStartMarker = (Marker2D)GetNode("AutoAttackStartPosition/AttackStartMarker");
-
 	}
 	public override void _Process(double delta)
 	{
@@ -87,6 +81,7 @@ public partial class invoker : CharacterBody2D
 
 
 		/*** debug section
+
 
 		***/
 
@@ -154,7 +149,7 @@ public partial class invoker : CharacterBody2D
 	{
 		if (Position.X < previousFramePos.X)
 		{
-			// isFacingLeft = true; 
+			// isFacingLeft = true;
 			InvokerImage.FlipH = true;
 		}
 		else if (Position.X > previousFramePos.X)
@@ -203,11 +198,12 @@ public partial class invoker : CharacterBody2D
 
 	private void SetOrbsType()
 	{
+		
 		EmitSignal(SignalName.Orb1SetType, OrbsSlots[0]);
 		EmitSignal(SignalName.Orb2SetType, OrbsSlots[1]);
 		EmitSignal(SignalName.Orb3SetType, OrbsSlots[2]);
-		EmitSignal(SignalName.GetOrbsSlots, OrbsSlots);
 
+		EmitSignal(SignalName.GetOrbsSlots, OrbsSlots);
 	}
 
 	private void AdjustMarkPosition(double delta)

@@ -9,7 +9,6 @@ public partial class orbs : Node2D
 	public string type { get; set; }
 
 
-	// Orbs related 
 	public string[] orbsTypeArray = new string[3];
 
 	private Color QuasColor = new Color(0.314f, 0.592f, 0.765f);
@@ -24,10 +23,9 @@ public partial class orbs : Node2D
 	
 	public override void _Ready()
 	{
-		var OrbsScene = (PackedScene)ResourceLoader.Load("res://scenes/characters/orbs.tscn");
-		// OrbsImage = (Node2D)GetNode("OrbsImage");
-		// OrbsParticle = (GpuParticles2D)GetNode("OrbsParticle");
-		// ChangedParticle = (GpuParticles2D)GetNode("ChangedParticle");
+		OrbsImage = (Node2D)GetNode("OrbsImage");
+		OrbsParticle = (GpuParticles2D)GetNode("OrbsParticle");
+		ChangedParticle = (GpuParticles2D)GetNode("ChangedParticle");
 
 		orbsTypeArray[0] = "Quas";
 		orbsTypeArray[1] = "Wex";
@@ -64,7 +62,6 @@ public partial class orbs : Node2D
 		}
 	}
 
-
 	private void SetModulate(Color color)
 	{
 		OrbsImage.Modulate = color;
@@ -77,12 +74,10 @@ public partial class orbs : Node2D
 	{
 		type = AssignedType;
 		ChangedParticle.Emitting = true;
-
 	}
 
 	public void _on_invoker_orb_2_set_type(string AssignedType)
 	{
-
 		type = AssignedType;
 		ChangedParticle.Emitting = true;
 	}
@@ -93,5 +88,6 @@ public partial class orbs : Node2D
 		ChangedParticle.Emitting = true;
 	}
 	
+
 
 }
