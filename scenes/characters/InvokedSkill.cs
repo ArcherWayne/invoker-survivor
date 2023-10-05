@@ -25,13 +25,7 @@ public partial class InvokedSkill : Node2D
 		SkillSlot2 = (Node2D)GetNode("SkillSlot2");
 		SkillNames = (Label)GetNode("SkillNames(debug)");
 
-
 		// OrbsSlots = {"Quas", "Wex", "Exort"};
-		OrbsSlots[0] = "Quas";
-		OrbsSlots[1] = "Wex";
-		OrbsSlots[2] = "Exort";
-
-
 		InvokeDict.Add(300, "ColdSnap");
 		InvokeDict.Add(210, "GhostWalk");
 		InvokeDict.Add(201, "IceWall");
@@ -48,7 +42,6 @@ public partial class InvokedSkill : Node2D
 	{
 		if (Input.IsActionJustPressed("Invoke"))
 		{
-			GD.Print(OrbsSlots);
 			StringBuilder stringBuilder = new StringBuilder();
 			foreach (string str in OrbsSlots)
 			{
@@ -56,16 +49,27 @@ public partial class InvokedSkill : Node2D
 			}
 			string builtOrbsSlots = stringBuilder.ToString();
 			int InovkedNumber = CountSpells(builtOrbsSlots);
-			// FIXME: add condition to check if the invoked skill is already in the skill slots
-			// if (InvokeDict.ContainsKey(InovkedNumber))
-			// {
-				Skill2String = Skill1String;
-				Skill1String = InvokeDict[InovkedNumber];
-			// }
-			// else
-			// {
-			// 	GD.Print("No corresponding invoked number found in dict!");
-			// }
+
+			if (InvokeDict.ContainsKey(InovkedNumber))
+			{
+				string InvokedSkillString = InvokeDict[InovkedNumber];
+				if (Skill2String == InvokedSkillString)
+				{
+					SkillReplacementString = Skill1String;
+					Skill1String = Skill2String;
+					Skill2String = SkillReplacementString;
+					SkillReplacementString = "Empty";
+				}
+				else if (Skill1String != InvokedSkillString & Skill2String != InvokedSkillString)
+				{
+					Skill2String = Skill1String;
+					Skill1String = InvokedSkillString;
+				}
+			}
+			else
+			{
+				GD.Print("No corresponding invoked number found in dict!");
+			}
 
 			SkillNames.Text = InovkedNumber + Skill1String + Skill2String;
 		}
