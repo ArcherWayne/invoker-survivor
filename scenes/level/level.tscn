@@ -24,5 +24,7 @@ autostart = true
 
 [node name="projectiles" type="Node2D" parent="."]
 
+[node name="Creeps" type="Node" parent="."]
+
 [connection signal="LeftClick" from="Invoker" to="." method="_on_invoker_left_click"]
 [connection signal="timeout" from="Invoker/autoAttackInterval" to="." method="_on_auto_attack_interval_timeout"]

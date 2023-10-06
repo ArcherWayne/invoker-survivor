@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://bd637nrbwcong"]
+
+[ext_resource type="Texture2D" uid="uid://rjwtbc2mxkjp" path="res://assets/graphics/creeps/creep_idle_animation.png" id="1_kg40f"]
+[ext_resource type="Script" path="res://scenes/enemies/creeps.cs" id="1_q4tv1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4ldue"]
+size = Vector2(76, 96)
+
+[node name="Creeps" type="CharacterBody2D"]
+collision_layer = 8
+collision_mask = 15
+script = ExtResource("1_q4tv1")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_kg40f")
+vframes = 2
+frame = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_4ldue")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]

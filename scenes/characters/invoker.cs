@@ -6,8 +6,11 @@ using System.Security.Cryptography.X509Certificates;
 
 public partial class invoker : CharacterBody2D
 {
-	[Export]
-	private int moveSpeed = 325;
+	// [Export]
+	// private int moveSpeed = 325;
+
+	private globals globals;
+
 
 	// get nodes
 	private Sprite2D InvokerImage;
@@ -51,6 +54,8 @@ public partial class invoker : CharacterBody2D
 
 	public override void _Ready()
 	{
+		globals = GetNode<globals>("/root/Globals");
+
 		moveDestination = Position;
 
 		InvokerImage = GetNode<Sprite2D>("InvokerImage");
@@ -106,7 +111,7 @@ public partial class invoker : CharacterBody2D
 
 		if (isMoving)
 		{
-			Velocity = moveDirection * moveSpeed;
+			Velocity = moveDirection * globals.invokerMoveSpeed;
 
 			MoveAndSlide();
 		}
