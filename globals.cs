@@ -18,6 +18,6 @@ public partial class globals : Node
 
 	// creep related parameters
 	public float creepMaxHealth = 200;
-	public float creepMoveSpeed = 500;
+	public float creepMoveSpeed = 100;
 	public float creepAttackDamage = 10;
 }

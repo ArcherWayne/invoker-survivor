@@ -30,10 +30,10 @@ public partial class level : Node2D
 	{
 		if (CanAutoAttack)
 		{
-			RigidBody2D autoAttack = (RigidBody2D)AutoAttackScene.Instantiate();
-			autoAttack.Position = position;
-			autoAttack.LinearVelocity = direction * autoAttackTrajectorySpeed;
-			autoAttack.Rotation = direction.Angle();
+			Area2D autoAttack = (Area2D)AutoAttackScene.Instantiate();
+			// autoAttack.Position = position;
+			// autoAttack.LinearVelocity = direction * autoAttackTrajectorySpeed;
+			// autoAttack.Rotation = direction.Angle();
 			projectile.AddChild(autoAttack);
 			CanAutoAttack = false;
 		}

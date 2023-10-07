@@ -7,3 +7,5 @@ icon.svg.import
 # *.tscn
 *.csproj
 *.sln
+*.old
+*.old

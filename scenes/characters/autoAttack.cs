@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class autoAttack : RigidBody2D
+public partial class autoAttack : Area2D
 {
 	private Color QuasColor = new Color(0.314f, 0.592f, 0.765f);
 	private Color WexColor = new Color(1f, 0.686f, 1f);
@@ -10,22 +10,22 @@ public partial class autoAttack : RigidBody2D
 
 	public override void _Ready()
 	{
-
 	}
 
 	public override void _Process(double delta)
 	{
-
+		// add autoattck movement code from level here.
 	}
 
-	public override void _PhysicsProcess(double delta)
-	{
-
-	}
 
 	private void _on_timer_timeout()
 	{
 		QueueFree();
 	}
 
+	private void _on_body_entered(Node body)
+	{
+		GD.Print("Collied!");
+		QueueFree();
+	}
 }
