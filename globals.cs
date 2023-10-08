@@ -13,10 +13,12 @@ public partial class globals : Node
 	public int invokerIntellengence = 10;
 	public float inovkerAttackDamage = 50;
 	public float inovkerAttackInterval = 0.5f;
+	public float invokerAttackProjectileSpeed = 400;
 	public float inovkerAmour = 10;
 	public int invokerMoveSpeed = 325;
 
 	// creep related parameters
+	public float creepSpawnInterval = 0.5f;
 	public float creepMaxHealth = 200;
 	public float creepMoveSpeed = 100;
 	public float creepAttackDamage = 10;

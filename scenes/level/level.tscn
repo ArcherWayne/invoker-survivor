@@ -29,5 +29,10 @@ autostart = true
 
 [node name="Creeps" parent="Creeps" instance=ExtResource("4_c2b6n")]
 
+[node name="CreepSpawnTimer" type="Timer" parent="."]
+wait_time = 0.5
+autostart = true
+
 [connection signal="LeftClick" from="Invoker" to="." method="_on_invoker_left_click"]
 [connection signal="timeout" from="Invoker/autoAttackInterval" to="." method="_on_auto_attack_interval_timeout"]
+[connection signal="timeout" from="CreepSpawnTimer" to="." method="_on_creep_spawn_timer_timeout"]
