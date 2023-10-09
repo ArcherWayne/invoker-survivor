@@ -35,9 +35,7 @@ public partial class autoAttack : Area2D
 
 	private void _on_body_entered(Node body)
 	{
-		GD.Print("Collied!");
 		QueueFree();
-		// FIXME: make hit creep take damage
-		body.QueueFree();
+		body.Call("TakeDamage");
 	}
 }

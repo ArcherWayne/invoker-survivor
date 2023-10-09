@@ -18,6 +18,7 @@ metadata/_edit_lock_ = true
 [node name="Invoker" parent="." instance=ExtResource("1_7oaws")]
 
 [node name="Camera2D" type="Camera2D" parent="Invoker"]
+process_callback = 0
 
 [node name="autoAttackInterval" type="Timer" parent="Invoker"]
 wait_time = 0.5

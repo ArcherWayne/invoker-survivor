@@ -9,6 +9,7 @@ public partial class creeps : CharacterBody2D
 
 
 	private float creepMaxHealth;
+	private float creepCurrentHealth;
 	private float creepMoveSpeed;
 	private float creepAttackDamage;
 	// private bool isFacingRight = true;
@@ -24,6 +25,7 @@ public partial class creeps : CharacterBody2D
 		CreepImage = (Sprite2D)GetNode("CreepImage");
 
 		creepMaxHealth = globals.creepMaxHealth;
+		creepCurrentHealth = creepMaxHealth;
 		creepMoveSpeed = globals.creepMoveSpeed;
 		creepAttackDamage = globals.creepAttackDamage;
 	}
@@ -33,6 +35,7 @@ public partial class creeps : CharacterBody2D
 		playerPosition = GetPlayerPosition();
 		CheckingFacingDirection();
 		GetMoveDirectionToPlayer();
+		CheckHealth();
 	}
 
 	public override void _PhysicsProcess(double delta)
@@ -67,4 +70,19 @@ public partial class creeps : CharacterBody2D
 		moveDirection = (moveDestination - Position).Normalized();
 		return moveDirection;
 	}
+
+	public void TakeDamage()
+	{
+		// GD.Print("TakeDamage");
+		creepCurrentHealth -= globals.inovkerAttackDamage;
+	}
+	
+	private void CheckHealth()
+	{
+		if (creepCurrentHealth <= 0)
+		{
+			QueueFree();
+		}
+	}
+
 }
