@@ -10,6 +10,9 @@ public partial class globals : Node
 	public int invokerStrength = 10;
 	public int invokerAgility = 10;
 	public int invokerIntellengence = 10;
+	public int invokerQuasLevel = 0;
+	public int invokerWexLevel = 0;
+	public int invokerExortLevel = 0;
 	public int invokerLevel = 1;
 	public int invokerExperience = 0;
 	public int invokerLevelUpCap = 100;

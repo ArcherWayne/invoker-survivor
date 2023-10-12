@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://b7t34vpp723q6" path="res://scenes/characters/invoker.tscn" id="1_7oaws"]
 [ext_resource type="Script" path="res://scenes/level/level.cs" id="1_dix6d"]
 [ext_resource type="Texture2D" uid="uid://dbgefipk2oxi4" path="res://assets/graphics/map/pixelatedmap.png" id="2_xou65"]
-[ext_resource type="PackedScene" uid="uid://bd637nrbwcong" path="res://scenes/enemies/creeps.tscn" id="4_c2b6n"]
+[ext_resource type="PackedScene" uid="uid://bp3cw5dxqf232" path="res://scenes/ui/ui.tscn" id="4_s5fuw"]
 
 [node name="Level" type="Node2D"]
 script = ExtResource("1_dix6d")
@@ -28,11 +28,11 @@ autostart = true
 
 [node name="Creeps" type="Node" parent="."]
 
-[node name="Creeps" parent="Creeps" instance=ExtResource("4_c2b6n")]
-
 [node name="CreepSpawnTimer" type="Timer" parent="."]
 wait_time = 0.5
 autostart = true
+
+[node name="ui" parent="." instance=ExtResource("4_s5fuw")]
 
 [connection signal="LeftClick" from="Invoker" to="." method="_on_invoker_left_click"]
 [connection signal="timeout" from="Invoker/autoAttackInterval" to="." method="_on_auto_attack_interval_timeout"]

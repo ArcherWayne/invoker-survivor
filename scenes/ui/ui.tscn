@@ -1,0 +1,54 @@
+[gd_scene load_steps=2 format=3 uid="uid://bp3cw5dxqf232"]
+
+[ext_resource type="Texture2D" uid="uid://4djj0p5as2hm" path="res://assets/graphics/windranger/windranger_mugshot.png" id="1_8ogqj"]
+
+[node name="ui" type="CanvasLayer"]
+
+[node name="PlayerMugshot" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -40.0
+offset_right = 20.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="HBoxContainer" type="VBoxContainer" parent="PlayerMugshot"]
+layout_mode = 0
+offset_left = -241.0
+offset_top = -129.0
+offset_right = 326.0
+offset_bottom = 609.0
+scale = Vector2(0.2, 0.2)
+
+[node name="Label" type="Label" parent="PlayerMugshot/HBoxContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="PlayerMugshot/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("1_8ogqj")
+
+[node name="QWE" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="VBoxContainer" type="HBoxContainer" parent="QWE"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="HealthAndMana" type="MarginContainer" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Health" type="ProgressBar" parent="HealthAndMana"]
+layout_mode = 2
+
+[node name="Mana" type="ProgressBar" parent="HealthAndMana"]
+layout_mode = 2
