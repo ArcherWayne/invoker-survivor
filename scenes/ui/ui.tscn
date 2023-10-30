@@ -1,54 +1,90 @@
-[gd_scene load_steps=2 format=3 uid="uid://bp3cw5dxqf232"]
+[gd_scene load_steps=10 format=3 uid="uid://bp3cw5dxqf232"]
 
+[ext_resource type="Script" path="res://scenes/ui/ui.cs" id="1_5fiut"]
 [ext_resource type="Texture2D" uid="uid://4djj0p5as2hm" path="res://assets/graphics/windranger/windranger_mugshot.png" id="1_8ogqj"]
+[ext_resource type="FontFile" uid="uid://c86usw3svt8kg" path="res://assets/font/HuaGuangGangTieZhiHei-KeBianTi-2.ttf" id="2_h46ho"]
+[ext_resource type="Texture2D" uid="uid://c74i61yqmg827" path="res://assets/graphics/icons/InvokerSkills/Quas.png" id="4_ljyri"]
+[ext_resource type="Texture2D" uid="uid://cv4d6r5uy627x" path="res://assets/graphics/icons/InvokerSkills/Wex.png" id="5_l0f53"]
+[ext_resource type="Texture2D" uid="uid://bj62t3vvrrqhx" path="res://assets/graphics/icons/InvokerSkills/Extort.png" id="6_1u4q8"]
+[ext_resource type="Texture2D" uid="uid://cqjlekricwowf" path="res://assets/graphics/icons/InvokerSkills/dota2.png" id="7_xjkxm"]
+[ext_resource type="Texture2D" uid="uid://3cpm61m256wm" path="res://assets/graphics/icons/InvokerSkills/Invoke.png" id="8_56wie"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_6oo4k"]
+font = ExtResource("2_h46ho")
+font_size = 64
+outline_size = 8
+outline_color = Color(0, 0, 0, 1)
 
 [node name="ui" type="CanvasLayer"]
+script = ExtResource("1_5fiut")
 
-[node name="PlayerMugshot" type="Control" parent="."]
-layout_mode = 3
+[node name="BottomArea" type="MarginContainer" parent="."]
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -20.0
-offset_top = -40.0
-offset_right = 20.0
+offset_left = -193.5
+offset_top = -455.0
+offset_right = 193.5
 grow_horizontal = 2
 grow_vertical = 0
+size_flags_vertical = 4
+metadata/_edit_use_anchors_ = true
 
-[node name="HBoxContainer" type="VBoxContainer" parent="PlayerMugshot"]
-layout_mode = 0
-offset_left = -241.0
-offset_top = -129.0
-offset_right = 326.0
-offset_bottom = 609.0
-scale = Vector2(0.2, 0.2)
+[node name="HBoxContainer" type="HBoxContainer" parent="BottomArea"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+alignment = 1
 
-[node name="Label" type="Label" parent="PlayerMugshot/HBoxContainer"]
+[node name="PlayerHead" type="VBoxContainer" parent="BottomArea/HBoxContainer"]
 layout_mode = 2
 
-[node name="TextureRect" type="TextureRect" parent="PlayerMugshot/HBoxContainer"]
+[node name="TextureRect" type="TextureRect" parent="BottomArea/HBoxContainer/PlayerHead"]
 layout_mode = 2
 texture = ExtResource("1_8ogqj")
+expand_mode = 4
 
-[node name="QWE" type="Control" parent="."]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="Label" type="Label" parent="BottomArea/HBoxContainer/PlayerHead"]
+layout_mode = 2
+text = "Invoker lvl = "
+label_settings = SubResource("LabelSettings_6oo4k")
 
-[node name="VBoxContainer" type="HBoxContainer" parent="QWE"]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="HealthAndMana" type="MarginContainer" parent="."]
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="Health" type="ProgressBar" parent="HealthAndMana"]
+[node name="BarAndSkillIcons" type="VBoxContainer" parent="BottomArea/HBoxContainer"]
 layout_mode = 2
 
-[node name="Mana" type="ProgressBar" parent="HealthAndMana"]
+[node name="HealthPoint" type="ProgressBar" parent="BottomArea/HBoxContainer/BarAndSkillIcons"]
 layout_mode = 2
+
+[node name="ManaPoint" type="ProgressBar" parent="BottomArea/HBoxContainer/BarAndSkillIcons"]
+layout_mode = 2
+
+[node name="SkillIcons" type="HBoxContainer" parent="BottomArea/HBoxContainer/BarAndSkillIcons"]
+layout_mode = 2
+
+[node name="Skill1" type="TextureRect" parent="BottomArea/HBoxContainer/BarAndSkillIcons/SkillIcons"]
+layout_mode = 2
+texture = ExtResource("4_ljyri")
+
+[node name="Skill2" type="TextureRect" parent="BottomArea/HBoxContainer/BarAndSkillIcons/SkillIcons"]
+layout_mode = 2
+texture = ExtResource("5_l0f53")
+
+[node name="Skill3" type="TextureRect" parent="BottomArea/HBoxContainer/BarAndSkillIcons/SkillIcons"]
+layout_mode = 2
+texture = ExtResource("6_1u4q8")
+
+[node name="Skill4" type="TextureRect" parent="BottomArea/HBoxContainer/BarAndSkillIcons/SkillIcons"]
+layout_mode = 2
+texture = ExtResource("7_xjkxm")
+expand_mode = 2
+
+[node name="Skill5" type="TextureRect" parent="BottomArea/HBoxContainer/BarAndSkillIcons/SkillIcons"]
+layout_mode = 2
+texture = ExtResource("7_xjkxm")
+expand_mode = 2
+
+[node name="Skill6" type="TextureRect" parent="BottomArea/HBoxContainer/BarAndSkillIcons/SkillIcons"]
+layout_mode = 2
+texture = ExtResource("8_56wie")
