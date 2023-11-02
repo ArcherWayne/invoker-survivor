@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://bp3cw5dxqf232"]
+[gd_scene load_steps=16 format=3 uid="uid://bp3cw5dxqf232"]
 
 [ext_resource type="Script" path="res://scenes/ui/ui.cs" id="1_5fiut"]
 [ext_resource type="Texture2D" uid="uid://4djj0p5as2hm" path="res://assets/graphics/windranger/windranger_mugshot.png" id="1_8ogqj"]
@@ -8,10 +8,16 @@
 [ext_resource type="Texture2D" uid="uid://bj62t3vvrrqhx" path="res://assets/graphics/icons/InvokerSkills/Extort.png" id="6_1u4q8"]
 [ext_resource type="Texture2D" uid="uid://cqjlekricwowf" path="res://assets/graphics/icons/InvokerSkills/dota2.png" id="7_xjkxm"]
 [ext_resource type="Texture2D" uid="uid://3cpm61m256wm" path="res://assets/graphics/icons/InvokerSkills/Invoke.png" id="8_56wie"]
+[ext_resource type="Texture2D" uid="uid://dvg55hxiwyhki" path="res://assets/graphics/items/hand_of_midas_lg.png" id="9_gfw3p"]
+[ext_resource type="Texture2D" uid="uid://bjc0tnmrbqq6c" path="res://assets/graphics/items/monkey_king_bar_lg.png" id="10_p1fku"]
+[ext_resource type="Texture2D" uid="uid://b8nyjsiv30xk6" path="res://assets/graphics/items/yasha_and_kaya_lg.png" id="11_3wrss"]
+[ext_resource type="Texture2D" uid="uid://cegkdpv1mwh3j" path="res://assets/graphics/items/bloodthorn_lg.png" id="12_y10qq"]
+[ext_resource type="Texture2D" uid="uid://bavbgvpo5yvxg" path="res://assets/graphics/items/boots_of_bearing_lg.png" id="13_vae0m"]
+[ext_resource type="Texture2D" uid="uid://63veysxwmmf3" path="res://assets/graphics/items/wind_waker_lg.png" id="14_pnjet"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_6oo4k"]
 font = ExtResource("2_h46ho")
-font_size = 64
+font_size = 18
 outline_size = 8
 outline_color = Color(0, 0, 0, 1)
 
@@ -41,12 +47,12 @@ alignment = 1
 [node name="PlayerHead" type="VBoxContainer" parent="BottomArea/HBoxContainer"]
 layout_mode = 2
 
-[node name="TextureRect" type="TextureRect" parent="BottomArea/HBoxContainer/PlayerHead"]
+[node name="PlayerImage" type="TextureRect" parent="BottomArea/HBoxContainer/PlayerHead"]
 layout_mode = 2
 texture = ExtResource("1_8ogqj")
-expand_mode = 4
+expand_mode = 5
 
-[node name="Label" type="Label" parent="BottomArea/HBoxContainer/PlayerHead"]
+[node name="Level" type="Label" parent="BottomArea/HBoxContainer/PlayerHead"]
 layout_mode = 2
 text = "Invoker lvl = "
 label_settings = SubResource("LabelSettings_6oo4k")
@@ -55,10 +61,14 @@ label_settings = SubResource("LabelSettings_6oo4k")
 layout_mode = 2
 
 [node name="HealthPoint" type="ProgressBar" parent="BottomArea/HBoxContainer/BarAndSkillIcons"]
+modulate = Color(0.917647, 0, 0.141176, 1)
 layout_mode = 2
+value = 100.0
 
 [node name="ManaPoint" type="ProgressBar" parent="BottomArea/HBoxContainer/BarAndSkillIcons"]
+modulate = Color(0.196078, 0.407843, 1, 1)
 layout_mode = 2
+value = 58.0
 
 [node name="SkillIcons" type="HBoxContainer" parent="BottomArea/HBoxContainer/BarAndSkillIcons"]
 layout_mode = 2
@@ -88,3 +98,41 @@ expand_mode = 2
 [node name="Skill6" type="TextureRect" parent="BottomArea/HBoxContainer/BarAndSkillIcons/SkillIcons"]
 layout_mode = 2
 texture = ExtResource("8_56wie")
+
+[node name="Items" type="VBoxContainer" parent="BottomArea/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="1-3" type="HBoxContainer" parent="BottomArea/HBoxContainer/Items"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 10
+
+[node name="item1" type="TextureRect" parent="BottomArea/HBoxContainer/Items/1-3"]
+layout_mode = 2
+texture = ExtResource("9_gfw3p")
+
+[node name="item2" type="TextureRect" parent="BottomArea/HBoxContainer/Items/1-3"]
+layout_mode = 2
+texture = ExtResource("10_p1fku")
+
+[node name="item3" type="TextureRect" parent="BottomArea/HBoxContainer/Items/1-3"]
+layout_mode = 2
+texture = ExtResource("11_3wrss")
+
+[node name="4-6" type="HBoxContainer" parent="BottomArea/HBoxContainer/Items"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 2
+
+[node name="item4" type="TextureRect" parent="BottomArea/HBoxContainer/Items/4-6"]
+layout_mode = 2
+texture = ExtResource("12_y10qq")
+
+[node name="item5" type="TextureRect" parent="BottomArea/HBoxContainer/Items/4-6"]
+layout_mode = 2
+texture = ExtResource("13_vae0m")
+
+[node name="item6" type="TextureRect" parent="BottomArea/HBoxContainer/Items/4-6"]
+layout_mode = 2
+texture = ExtResource("14_pnjet")
