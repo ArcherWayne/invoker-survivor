@@ -92,6 +92,8 @@ public partial class invoker : CharacterBody2D
 
 		// GetPreviousPos must be at end of the _Process()!!!
 		GetPreviousPos();
+
+		globals.invokerCurrentHealth -= (float)0.1;
 	}
 
 	public override void _PhysicsProcess(double delta)

@@ -61,14 +61,62 @@ label_settings = SubResource("LabelSettings_6oo4k")
 layout_mode = 2
 
 [node name="HealthPoint" type="ProgressBar" parent="BottomArea/HBoxContainer/BarAndSkillIcons"]
-modulate = Color(0.917647, 0, 0.141176, 1)
+self_modulate = Color(1, 0.12549, 0.0862745, 1)
+show_behind_parent = true
+custom_minimum_size = Vector2(0, 25)
 layout_mode = 2
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
+theme_override_fonts/font = ExtResource("2_h46ho")
 value = 100.0
+show_percentage = false
+
+[node name="HealthValue" type="Label" parent="BottomArea/HBoxContainer/BarAndSkillIcons/HealthPoint"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -4.0
+offset_top = -4.0
+offset_right = 4.0
+offset_bottom = 4.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+text = "Healthpoints
+"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="ManaPoint" type="ProgressBar" parent="BottomArea/HBoxContainer/BarAndSkillIcons"]
-modulate = Color(0.196078, 0.407843, 1, 1)
+self_modulate = Color(0.0117647, 0.321569, 1, 1)
+custom_minimum_size = Vector2(0, 25)
 layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
+theme_override_fonts/font = ExtResource("2_h46ho")
 value = 58.0
+show_percentage = false
+
+[node name="ManaValue" type="Label" parent="BottomArea/HBoxContainer/BarAndSkillIcons/ManaPoint"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -4.0
+offset_top = -4.0
+offset_right = 4.0
+offset_bottom = 4.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+text = "manapoints
+"
 
 [node name="SkillIcons" type="HBoxContainer" parent="BottomArea/HBoxContainer/BarAndSkillIcons"]
 layout_mode = 2
