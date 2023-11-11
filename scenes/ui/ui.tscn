@@ -52,7 +52,7 @@ layout_mode = 2
 texture = ExtResource("1_8ogqj")
 expand_mode = 5
 
-[node name="Level" type="Label" parent="BottomArea/HBoxContainer/PlayerHead"]
+[node name="LevelLabel" type="Label" parent="BottomArea/HBoxContainer/PlayerHead"]
 layout_mode = 2
 text = "Invoker lvl = "
 label_settings = SubResource("LabelSettings_6oo4k")
@@ -72,7 +72,7 @@ theme_override_fonts/font = ExtResource("2_h46ho")
 value = 100.0
 show_percentage = false
 
-[node name="HealthValue" type="Label" parent="BottomArea/HBoxContainer/BarAndSkillIcons/HealthPoint"]
+[node name="HealthValueLabel" type="Label" parent="BottomArea/HBoxContainer/BarAndSkillIcons/HealthPoint"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -101,7 +101,7 @@ theme_override_fonts/font = ExtResource("2_h46ho")
 value = 58.0
 show_percentage = false
 
-[node name="ManaValue" type="Label" parent="BottomArea/HBoxContainer/BarAndSkillIcons/ManaPoint"]
+[node name="ManaValueLabel" type="Label" parent="BottomArea/HBoxContainer/BarAndSkillIcons/ManaPoint"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5

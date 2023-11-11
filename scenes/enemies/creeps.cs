@@ -82,7 +82,12 @@ public partial class creeps : CharacterBody2D
 		if (creepCurrentHealth <= 0)
 		{
 			QueueFree();
+			globals.invokerExperience += globals.creepExperienceGiveToPlayer;
+			GD.Print(globals.invokerExperience);
+			GD.Print(globals.invokerLevel);
 		}
 	}
+	
+	
 
 }
