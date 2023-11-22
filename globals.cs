@@ -8,7 +8,7 @@ public partial class globals : Node
 	public float invokerMaxHealth = 550;
 	public float invokerCurrentHealth = 550;
 	public float invokerMaxMana = 300;
-	public float inovkerCurrentMana = 150;
+	public float invokerCurrentMana = 150;
 
 	// atributes
 	public int invokerStrength = 10;
@@ -19,18 +19,20 @@ public partial class globals : Node
 	public int invokerQuasLevel = 0;
 	public int invokerWexLevel = 0;
 	public int invokerExortLevel = 0;
+	public string invokerSkill1String;
+	public string invokerSkill2String;
 
 	// level and experience
 	public int invokerLevel = 1;
 	public int invokerExperience = 0;
 
 	// auto attack
-	public float inovkerAttackDamage = 100;
-	public float inovkerAttackInterval = 0.5f;
+	public float invokerAttackDamage = 100;
+	public float invokerAttackInterval = 0.5f;
 	public float invokerAttackProjectileSpeed = 400;
 
 	// amour, movement speed
-	public float inovkerAmour = 10;
+	public float invokerAmour = 10;
 	public int invokerMoveSpeed = 325;
 
 	// creep related parameters
@@ -51,5 +53,8 @@ public partial class globals : Node
 				break;
 			}
 		}
+
+		// GD.Print(invokerSkill1String);
+		// GD.Print(invokerSkill2String);
 	}
 }

@@ -12,13 +12,14 @@ public partial class creeps : CharacterBody2D
 	private float creepCurrentHealth;
 	private float creepMoveSpeed;
 	private float creepAttackDamage;
-	// private bool isFacingRight = true;
 	private Vector2 playerPosition;
 	private Vector2 moveDestination;
 	private Vector2 moveDirection;
 
 	public override void _Ready()
 	{
+		AddToGroup("creeps");
+
 		globals = (globals)GetNode("/root/Globals");
 
 		player = (CharacterBody2D)GetNode("/root/Level/Invoker");
@@ -28,6 +29,8 @@ public partial class creeps : CharacterBody2D
 		creepCurrentHealth = creepMaxHealth;
 		creepMoveSpeed = globals.creepMoveSpeed;
 		creepAttackDamage = globals.creepAttackDamage;
+
+		// GD.Print(Name);
 	}
 
 	public override void _Process(double delta)
@@ -54,12 +57,10 @@ public partial class creeps : CharacterBody2D
 	{
 		if (playerPosition.X <= Position.X)
 		{
-			// isFacingRight = false;
 			CreepImage.FlipH = true;
 		}
 		else
 		{
-			// isFacingRight = true;
 			CreepImage.FlipH = false;
 		}
 	}
@@ -73,8 +74,7 @@ public partial class creeps : CharacterBody2D
 
 	public void TakeDamage()
 	{
-		// GD.Print("TakeDamage");
-		creepCurrentHealth -= globals.inovkerAttackDamage;
+		creepCurrentHealth -= globals.invokerAttackDamage;
 	}
 	
 	private void CheckHealth()
@@ -83,11 +83,6 @@ public partial class creeps : CharacterBody2D
 		{
 			QueueFree();
 			globals.invokerExperience += globals.creepExperienceGiveToPlayer;
-			GD.Print(globals.invokerExperience);
-			GD.Print(globals.invokerLevel);
 		}
 	}
-	
-	
-
 }

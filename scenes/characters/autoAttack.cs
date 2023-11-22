@@ -35,7 +35,10 @@ public partial class autoAttack : Area2D
 
 	private void _on_body_entered(Node body)
 	{
-		QueueFree();
-		body.Call("TakeDamage");
+		if (body.IsInGroup("creeps"))
+		{
+			QueueFree();
+			body.Call("TakeDamage");
+		}
 	}
 }

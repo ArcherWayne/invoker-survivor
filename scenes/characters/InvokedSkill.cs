@@ -6,6 +6,9 @@ using System.Text;
 
 public partial class InvokedSkill : Node2D
 {
+
+	private globals globals;
+
 	CharacterBody2D Inovker;
 	Node2D SkillSlot1;
 	Node2D SkillSlot2;
@@ -20,6 +23,8 @@ public partial class InvokedSkill : Node2D
 
 	public override void _Ready()
 	{
+		globals = GetNode<globals>("/root/Globals");
+
 		Inovker = (CharacterBody2D)GetNode("..");
 		SkillSlot1 = (Node2D)GetNode("SkillSlot1");
 		SkillSlot2 = (Node2D)GetNode("SkillSlot2");
@@ -64,12 +69,18 @@ public partial class InvokedSkill : Node2D
 				{
 					Skill2String = Skill1String;
 					Skill1String = InvokedSkillString;
+
 				}
+
+				globals.invokerSkill1String = Skill1String;
+				globals.invokerSkill2String = Skill2String;
 			}
 			else
 			{
 				GD.Print("No corresponding invoked number found in dict!");
 			}
+
+
 
 			SkillNames.Text = InovkedNumber + Skill1String + Skill2String;
 		}
