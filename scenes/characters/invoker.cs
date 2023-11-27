@@ -77,6 +77,7 @@ public partial class invoker : CharacterBody2D
 		GetOrbs();
 		AdjustMarkPosition(delta);
 		AdjustOrbsPosition();
+		CheckDeath();
 
 		if (Input.IsActionPressed("left_click"))
 		{
@@ -237,5 +238,18 @@ public partial class invoker : CharacterBody2D
 		Orbs1.Position = OrbsPos1.Position;
 		Orbs2.Position = OrbsPos2.Position;
 		Orbs3.Position = OrbsPos3.Position;
+	}
+
+	private void CheckDeath()
+	{
+		if (globals.invokerCurrentHealth <= 0)
+		{
+			QueueFree();
+		}
+	}
+
+	private void TakeCreepDamage()
+	{
+		globals.invokerCurrentHealth -= globals.creepAttackDamage;
 	}
 }

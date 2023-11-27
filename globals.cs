@@ -10,6 +10,8 @@ public partial class globals : Node
 	public float invokerMaxMana = 300;
 	public float invokerCurrentMana = 150;
 
+	public float invokerTakeDamageRange = 50;
+
 	// atributes
 	public int invokerStrength = 10;
 	public int invokerAgility = 10;
@@ -39,6 +41,8 @@ public partial class globals : Node
 	public float creepSpawnInterval = 0.5f;
 	public float creepMaxHealth = 200;
 	public float creepMoveSpeed = 100;
+	public float creepKnockBackSpeed = -300;
+	public float creepKnockBackReturn = 5;
 	public float creepAttackDamage = 10;
 	public int creepLevel = 1;
 	public int creepExperienceGiveToPlayer = 50;
@@ -53,8 +57,5 @@ public partial class globals : Node
 				break;
 			}
 		}
-
-		// GD.Print(invokerSkill1String);
-		// GD.Print(invokerSkill2String);
 	}
 }

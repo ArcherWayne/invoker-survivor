@@ -11,8 +11,11 @@ public partial class creeps : CharacterBody2D
 	private float creepMaxHealth;
 	private float creepCurrentHealth;
 	private float creepMoveSpeed;
+	private float creepKnockBackSpeed;
+	private float creepSpeedBeforeKnockBack;
 	private float creepAttackDamage;
 	private Vector2 playerPosition;
+	private float playerDistance;
 	private Vector2 moveDestination;
 	private Vector2 moveDirection;
 
@@ -29,6 +32,8 @@ public partial class creeps : CharacterBody2D
 		creepCurrentHealth = creepMaxHealth;
 		creepMoveSpeed = globals.creepMoveSpeed;
 		creepAttackDamage = globals.creepAttackDamage;
+		creepKnockBackSpeed = globals.creepKnockBackSpeed;
+		creepSpeedBeforeKnockBack = creepMoveSpeed;
 
 		// GD.Print(Name);
 	}
@@ -36,14 +41,17 @@ public partial class creeps : CharacterBody2D
 	public override void _Process(double delta)
 	{
 		playerPosition = GetPlayerPosition();
+		playerDistance = GetDistanceWithPlayer();
 		CheckingFacingDirection();
 		GetMoveDirectionToPlayer();
 		CheckHealth();
+		CheckDistanceWithPlayer();
+		creepMoveSpeed = ReturnToOriginalSpeed();
 	}
 
 	public override void _PhysicsProcess(double delta)
 	{
-		Velocity = moveDirection * globals.creepMoveSpeed;
+		Velocity = moveDirection * creepMoveSpeed;
 		MoveAndSlide();
 	}
 
@@ -51,6 +59,13 @@ public partial class creeps : CharacterBody2D
 	{
 		playerPosition = player.GlobalPosition;
 		return playerPosition;
+	}
+
+	private float GetDistanceWithPlayer()
+	{
+		Vector2 playerDistanceVector = playerPosition - Position;
+		playerDistance = playerDistanceVector.Length();
+		return playerDistance;
 	}
 
 	private void CheckingFacingDirection()
@@ -84,5 +99,40 @@ public partial class creeps : CharacterBody2D
 			QueueFree();
 			globals.invokerExperience += globals.creepExperienceGiveToPlayer;
 		}
+	}
+
+	private void CheckDistanceWithPlayer()
+	{
+		if (playerDistance <= globals.invokerTakeDamageRange)
+		{
+			player.Call("TakeCreepDamage");
+			SetKnockBack();
+			// TakeDamage();
+		}
+	}
+
+	private void SetKnockBack()
+	{
+		creepSpeedBeforeKnockBack = creepMoveSpeed;
+		creepMoveSpeed += creepKnockBackSpeed;
+	}
+
+	private float ReturnToOriginalSpeed()
+	{
+		if (creepMoveSpeed < creepSpeedBeforeKnockBack - 20)
+		{
+			creepMoveSpeed += globals.creepKnockBackReturn;
+		}
+		else if (creepMoveSpeed > creepSpeedBeforeKnockBack + 20)
+		{
+			creepMoveSpeed -= globals.creepKnockBackReturn;
+		}
+		else 
+		{
+			creepMoveSpeed = creepSpeedBeforeKnockBack;
+		}
+		
+		return creepMoveSpeed;
+	
 	}
 }
