@@ -20,6 +20,9 @@ public partial class level : Node2D
 		Invoker = (CharacterBody2D)GetNode("Invoker");
 		projectile = (Node2D)GetNode("projectiles");
 		Creeps = (Node)GetNode("Creeps");
+
+		// test creep spawn
+		_on_creep_spawn_timer_timeout();
 	}
 
 	public override void _Process(double delta)
@@ -47,7 +50,6 @@ public partial class level : Node2D
 	public void _on_creep_spawn_timer_timeout()
 	{
 		CharacterBody2D creep = (CharacterBody2D)CreepsScene.Instantiate();
-		// creep.Position = Invoker.Position;
 		Creeps.AddChild(creep);
 
 		float randomValue = GD.Randf();
@@ -55,7 +57,7 @@ public partial class level : Node2D
 		float maxAngle = 360f;
 		float randomAngle = Mathf.Lerp(minAngle, maxAngle, randomValue);
 
-		float distanceWithPlayer = 1000;
+		float distanceWithPlayer = 400;
 		Vector2 positionRelativeToPlayer = new Vector2();
 		positionRelativeToPlayer.X = distanceWithPlayer * Mathf.Cos(randomAngle);
 		positionRelativeToPlayer.Y = distanceWithPlayer * Mathf.Sin(randomAngle);

@@ -30,7 +30,6 @@ autostart = true
 
 [node name="CreepSpawnTimer" type="Timer" parent="."]
 wait_time = 0.5
-autostart = true
 
 [node name="ui" parent="." instance=ExtResource("4_s5fuw")]
 
