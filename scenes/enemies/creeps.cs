@@ -11,7 +11,7 @@ public partial class creeps : CharacterBody2D
 	private float creepMaxHealth;
 	private float creepCurrentHealth;
 	private float creepMoveSpeed;
-	private float creepKnockBackSpeed;
+	// private float creepKnockBackSpeed;
 	// private float creepSpeedBeforeKnockBack;
 	private float creepAttackDamage;
 	private Vector2 playerPosition;
@@ -32,9 +32,7 @@ public partial class creeps : CharacterBody2D
 		creepCurrentHealth = creepMaxHealth;
 		creepMoveSpeed = globals.creepMoveSpeed;
 		creepAttackDamage = globals.creepAttackDamage;
-		creepKnockBackSpeed = globals.creepKnockBackSpeed;
-
-		// GD.Print(Name);
+		// creepKnockBackSpeed = globals.creepBasicKnockBackSpeed;
 	}
 
 	public override void _Process(double delta)
@@ -47,7 +45,7 @@ public partial class creeps : CharacterBody2D
 		CheckDistanceWithPlayer();
 		creepMoveSpeed = ReturnToOriginalSpeed();
 
-		GD.Print(creepMoveSpeed);
+		// GD.Print(creepMoveSpeed);
 	}
 
 	public override void _PhysicsProcess(double delta)
@@ -107,15 +105,20 @@ public partial class creeps : CharacterBody2D
 		if (playerDistance <= globals.invokerTakeDamageRange)
 		{
 			player.Call("TakeCreepDamage");
-			SetKnockBack();
-			// TakeDamage();
+			SetKnockBack("TouchedPlayer");
 		}
 	}
 
-	private void SetKnockBack()
+	private void SetKnockBack(string KnockBackType)
 	{
-		// creepSpeedBeforeKnockBack = creepMoveSpeed;
-		creepMoveSpeed += creepKnockBackSpeed;
+		if (KnockBackType == "AutoAttack")
+		{
+			creepMoveSpeed += globals.creepBasicKnockBackSpeed + globals.creepAutoAttackedKnockBackSpeedAddition;
+		}
+		else if (KnockBackType == "TouchedPlayer")
+		{
+			creepMoveSpeed += globals.creepBasicKnockBackSpeed + globals.creepTouchedPlayerKnockBackSpeedAddition;
+		}
 	}
 
 	private float ReturnToOriginalSpeed()

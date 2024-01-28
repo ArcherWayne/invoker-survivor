@@ -77,6 +77,7 @@ public partial class invoker : CharacterBody2D
 		GetOrbs();
 		AdjustMarkPosition(delta);
 		AdjustOrbsPosition();
+		CheckKeyboardStop();
 		CheckDeath();
 
 		if (Input.IsActionPressed("left_click"))
@@ -144,6 +145,14 @@ public partial class invoker : CharacterBody2D
 		if (distance < 10)
 		{
 			Position = pos;
+		}
+	}
+
+	private void CheckKeyboardStop()
+	{
+		if (Input.IsActionPressed("keyboard stop"))
+		{
+			isMoving = false;
 		}
 	}
 

@@ -39,6 +39,7 @@ public partial class autoAttack : Area2D
 		{
 			QueueFree();
 			body.Call("TakeDamage");
+			body.Call("SetKnockBack", "AutoAttack");
 		}
 	}
 }

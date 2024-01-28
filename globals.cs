@@ -41,7 +41,9 @@ public partial class globals : Node
 	public float creepSpawnInterval = 0.5f;
 	public float creepMaxHealth = 200;
 	public float creepMoveSpeed = 100;
-	public float creepKnockBackSpeed = -300;
+	public float creepBasicKnockBackSpeed = -100;
+	public float creepAutoAttackedKnockBackSpeedAddition = -50;
+	public float creepTouchedPlayerKnockBackSpeedAddition = -100;
 	public float creepKnockBackReturn = 5;
 	public float creepAttackDamage = 10;
 	public int creepLevel = 1;
