@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://bp3cw5dxqf232"]
+[gd_scene load_steps=18 format=3 uid="uid://bp3cw5dxqf232"]
 
 [ext_resource type="Script" path="res://scenes/ui/ui.cs" id="1_5fiut"]
 [ext_resource type="Texture2D" uid="uid://4djj0p5as2hm" path="res://assets/graphics/windranger/windranger_mugshot.png" id="1_8ogqj"]
@@ -21,14 +21,27 @@ font_size = 18
 outline_size = 8
 outline_color = Color(0, 0, 0, 1)
 
+[sub_resource type="LabelSettings" id="LabelSettings_lgfbs"]
+line_spacing = 6.0
+font = ExtResource("2_h46ho")
+font_size = 22
+outline_size = 5
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_s2b7t"]
+font = ExtResource("2_h46ho")
+font_size = 22
+outline_size = 5
+outline_color = Color(0, 0, 0, 1)
+
 [node name="ui" type="CanvasLayer"]
 script = ExtResource("1_5fiut")
 
 [node name="BottomArea" type="MarginContainer" parent="."]
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
+anchors_preset = -1
+anchor_left = 0.314687
+anchor_top = 1.30222
+anchor_right = 0.685938
 anchor_bottom = 1.0
 offset_left = -193.5
 offset_top = -455.0
@@ -184,3 +197,32 @@ texture = ExtResource("13_vae0m")
 [node name="item6" type="TextureRect" parent="BottomArea/HBoxContainer/Items/4-6"]
 layout_mode = 2
 texture = ExtResource("14_pnjet")
+
+[node name="TopArea" type="MarginContainer" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -193.0
+offset_right = 194.0
+offset_bottom = 67.0
+grow_horizontal = 2
+size_flags_vertical = 4
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TopArea"]
+layout_mode = 2
+alignment = 1
+
+[node name="Time" type="Label" parent="TopArea/HBoxContainer"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+text = "Remaining TIme = 30.00"
+label_settings = SubResource("LabelSettings_lgfbs")
+horizontal_alignment = 1
+
+[node name="Kills" type="Label" parent="TopArea/HBoxContainer"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+text = "Enemy Killed = 999
+"
+label_settings = SubResource("LabelSettings_s2b7t")
+horizontal_alignment = 1
