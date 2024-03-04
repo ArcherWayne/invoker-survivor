@@ -1,9 +1,12 @@
-[gd_scene load_steps=18 format=3 uid="uid://bp3cw5dxqf232"]
+[gd_scene load_steps=23 format=3 uid="uid://bp3cw5dxqf232"]
 
 [ext_resource type="Script" path="res://scenes/ui/ui.cs" id="1_5fiut"]
 [ext_resource type="Texture2D" uid="uid://4djj0p5as2hm" path="res://assets/graphics/windranger/windranger_mugshot.png" id="1_8ogqj"]
 [ext_resource type="FontFile" uid="uid://c86usw3svt8kg" path="res://assets/font/HuaGuangGangTieZhiHei-KeBianTi-2.ttf" id="2_h46ho"]
+[ext_resource type="Texture2D" uid="uid://cdblkv1dfnr13" path="res://assets/graphics/icons/attributeIcons/str.png" id="3_b2p7o"]
+[ext_resource type="Texture2D" uid="uid://defb31foev3m3" path="res://assets/graphics/icons/attributeIcons/agi.png" id="4_gpkcn"]
 [ext_resource type="Texture2D" uid="uid://c74i61yqmg827" path="res://assets/graphics/icons/InvokerSkills/Quas.png" id="4_ljyri"]
+[ext_resource type="Texture2D" uid="uid://jkq2l0ucndja" path="res://assets/graphics/icons/attributeIcons/int.png" id="5_dkn4h"]
 [ext_resource type="Texture2D" uid="uid://cv4d6r5uy627x" path="res://assets/graphics/icons/InvokerSkills/Wex.png" id="5_l0f53"]
 [ext_resource type="Texture2D" uid="uid://bj62t3vvrrqhx" path="res://assets/graphics/icons/InvokerSkills/Extort.png" id="6_1u4q8"]
 [ext_resource type="Texture2D" uid="uid://cqjlekricwowf" path="res://assets/graphics/icons/InvokerSkills/dota2.png" id="7_xjkxm"]
@@ -14,6 +17,15 @@
 [ext_resource type="Texture2D" uid="uid://cegkdpv1mwh3j" path="res://assets/graphics/items/bloodthorn_lg.png" id="12_y10qq"]
 [ext_resource type="Texture2D" uid="uid://bavbgvpo5yvxg" path="res://assets/graphics/items/boots_of_bearing_lg.png" id="13_vae0m"]
 [ext_resource type="Texture2D" uid="uid://63veysxwmmf3" path="res://assets/graphics/items/wind_waker_lg.png" id="14_pnjet"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_8ronf"]
+font = ExtResource("2_h46ho")
+outline_size = 8
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_tdg6t"]
+font = ExtResource("2_h46ho")
+outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_6oo4k"]
 font = ExtResource("2_h46ho")
@@ -39,9 +51,9 @@ script = ExtResource("1_5fiut")
 
 [node name="BottomArea" type="MarginContainer" parent="."]
 anchors_preset = -1
-anchor_left = 0.314687
-anchor_top = 1.30222
-anchor_right = 0.685938
+anchor_left = 0.275937
+anchor_top = 1.10111
+anchor_right = 0.725312
 anchor_bottom = 1.0
 offset_left = -193.5
 offset_top = -455.0
@@ -53,20 +65,64 @@ metadata/_edit_use_anchors_ = true
 
 [node name="HBoxContainer" type="HBoxContainer" parent="BottomArea"]
 layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 8
+size_flags_horizontal = 0
 alignment = 1
 
 [node name="PlayerHead" type="VBoxContainer" parent="BottomArea/HBoxContainer"]
 layout_mode = 2
+alignment = 2
 
 [node name="PlayerImage" type="TextureRect" parent="BottomArea/HBoxContainer/PlayerHead"]
 layout_mode = 2
 texture = ExtResource("1_8ogqj")
 expand_mode = 5
 
+[node name="AtriIcons" type="HBoxContainer" parent="BottomArea/HBoxContainer/PlayerHead"]
+layout_mode = 2
+alignment = 2
+
+[node name="Str" type="HBoxContainer" parent="BottomArea/HBoxContainer/PlayerHead/AtriIcons"]
+layout_mode = 2
+
+[node name="StrRect" type="TextureRect" parent="BottomArea/HBoxContainer/PlayerHead/AtriIcons/Str"]
+layout_mode = 2
+texture = ExtResource("3_b2p7o")
+expand_mode = 2
+
+[node name="StrLabel" type="Label" parent="BottomArea/HBoxContainer/PlayerHead/AtriIcons/Str"]
+layout_mode = 2
+text = "110
+"
+label_settings = SubResource("LabelSettings_8ronf")
+
+[node name="Agi" type="HBoxContainer" parent="BottomArea/HBoxContainer/PlayerHead/AtriIcons"]
+layout_mode = 2
+
+[node name="AgiRect" type="TextureRect" parent="BottomArea/HBoxContainer/PlayerHead/AtriIcons/Agi"]
+layout_mode = 2
+texture = ExtResource("4_gpkcn")
+
+[node name="AgiLabel" type="Label" parent="BottomArea/HBoxContainer/PlayerHead/AtriIcons/Agi"]
+layout_mode = 2
+text = "120"
+label_settings = SubResource("LabelSettings_tdg6t")
+
+[node name="Int" type="HBoxContainer" parent="BottomArea/HBoxContainer/PlayerHead/AtriIcons"]
+layout_mode = 2
+
+[node name="IntRect" type="TextureRect" parent="BottomArea/HBoxContainer/PlayerHead/AtriIcons/Int"]
+layout_mode = 2
+texture = ExtResource("5_dkn4h")
+
+[node name="IntLabel" type="Label" parent="BottomArea/HBoxContainer/PlayerHead/AtriIcons/Int"]
+layout_mode = 2
+text = "130
+"
+label_settings = SubResource("LabelSettings_tdg6t")
+
 [node name="LevelLabel" type="Label" parent="BottomArea/HBoxContainer/PlayerHead"]
 layout_mode = 2
+size_flags_horizontal = 8
 text = "Invoker lvl = "
 label_settings = SubResource("LabelSettings_6oo4k")
 

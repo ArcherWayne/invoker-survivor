@@ -13,9 +13,12 @@ public partial class globals : Node
 	public float invokerTakeDamageRange = 50;
 
 	// atributes
-	public int invokerStrength = 10;
-	public int invokerAgility = 10;
-	public int invokerIntellengence = 10;
+	public int invokerStartStrength = 0;
+	public int invokerCurrentStrength;
+	public int invokerStartAgility = 0;
+	public int invokerCurrentAgility;
+	public int invokerStartIntellengence = 0;
+	public int invokerCurrentIntellengence;
 
 	// skills
 	public int invokerQuasLevel = 0;
@@ -30,12 +33,17 @@ public partial class globals : Node
 
 	// auto attack
 	public float invokerAttackDamage = 100;
+	public float invokerCurrentAttackDamage;
 	public float invokerAttackInterval = 0.5f;
+	public float invokerCurrentAttackInterval;
 	public float invokerAttackProjectileSpeed = 400;
+	public float invokerCurrentAttackProjectileSpeed;
 
 	// amour, movement speed
-	public float invokerAmour = 10;
+	public int invokerAmour = 0;
+	public int invokerCurrentAmour; 
 	public int invokerMoveSpeed = 325;
+	public int invokerCurrentMoveSpeed;
 
 	// creep related parameters
 	public float creepSpawnInterval = 0.5f;
